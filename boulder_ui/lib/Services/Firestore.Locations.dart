@@ -10,4 +10,11 @@ class FirestoreLocations {
         .map((item) => Location.fromMap(item.data()))
         .toList();
   }
+
+  static Future<List<Location>> getAllLocations(String collection) async {
+    return (await FirebaseFirestore.instance.collection(collection).get())
+        .docs
+        .map((item) => Location.fromMap(item.data()))
+        .toList();
+  }
 }
