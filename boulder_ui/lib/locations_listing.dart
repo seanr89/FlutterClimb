@@ -16,7 +16,7 @@ class LocationsListing extends StatelessWidget {
             children: snapshot.data!.docs.map((document) {
               return ListTile(
                 title: Text(document['name']),
-                subtitle: Text('TODO'),
+                subtitle: Text(document['url']),
               );
             }).toList(),
           );
