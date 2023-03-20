@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "306530431683",
+    "project_id": "boulderme-8e2a7",
+    "storage_bucket": "boulderme-8e2a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306530431683:android:c472c877063b82a68ae876",
+        "android_client_info": {
+          "package_name": "com.example.boulder_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306530431683-9kufaedihmm9vg4uadbpo0a2u1006144.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_R2SOGi3hy-t6vMymdE5Pfxu8NNliGto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306530431683-9kufaedihmm9vg4uadbpo0a2u1006144.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
