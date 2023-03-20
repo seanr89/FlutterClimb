@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/boulder_list.dart';
 import 'package:namer_app/locations_listing.dart';
 import 'package:namer_app/locationspage.dart';
 import 'package:provider/provider.dart';
@@ -77,6 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         page = LocationsPage();
         break;
+      case 4:
+        page = BoulderList();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -104,6 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.map),
                     label: Text('Locale'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.hiking),
+                    label: Text('Boulders'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
