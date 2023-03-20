@@ -74,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         page = LocationsListing();
         break;
+      case 3:
+        page = LocationsPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -97,6 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.place),
                     label: Text('Locations'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.map),
+                    label: Text('Locale'),
                   ),
                 ],
                 selectedIndex: selectedIndex,

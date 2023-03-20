@@ -15,7 +15,7 @@ class _LocationsPageState extends State<LocationsPage> {
           future: FirestoreLocations.getAllEntries("Locations"),
           builder: (context, AsyncSnapshot<List<Location>> snapshot) {
             if (snapshot.hasData) {
-              //return Text(snapshot.data!.first.name ?? "Unknown");
+              //print("snap:${snapshot.data!.first.name}");
               return ListView(
                 children: snapshot.data!.map((location) {
                   return ListTile(title: Text(location.name ?? "Unknown"));
