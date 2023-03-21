@@ -11,7 +11,7 @@ class Location {
   Location({required this.name, required this.active, this.url, this.tiers});
 
   factory Location.fromMap(Map map) {
-    print(map);
+    //print(map);
     return Location(
         name: map['name'], active: map['active'], url: map['url'], tiers: null);
     //,
