@@ -5,6 +5,7 @@ import 'package:namer_app/locations_listing.dart';
 import 'package:namer_app/locationspage.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'boulder_detail.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -81,6 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 4:
         page = BoulderList();
         break;
+      case 5:
+        page = BoulderDetail();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -112,6 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.hiking),
                     label: Text('Boulders'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.question_answer),
+                    label: Text('Boulder Det'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
