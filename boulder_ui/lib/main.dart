@@ -68,11 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = GeneratorPage();
+        page = BoulderDetail();
         break;
       case 1:
-        page = FavoritesPage();
+        page = GeneratorPage();
         break;
+      // case 1:
+      //   page = FavoritesPage();
+      //   break;
       case 2:
         page = LocationsListing();
         break;
@@ -81,9 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 4:
         page = BoulderList();
-        break;
-      case 5:
-        page = BoulderDetail();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -99,13 +99,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     constraints.maxWidth >= 500, //if width over 500 expand
                 destinations: [
                   NavigationRailDestination(
+                    icon: Icon(Icons.hiking),
+                    label: Text('Boulder Det'),
+                  ),
+                  NavigationRailDestination(
                     icon: Icon(Icons.home),
                     label: Text('Home'),
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.favorite),
-                    label: Text('Favorites'),
-                  ),
+                  // NavigationRailDestination(
+                  //   icon: Icon(Icons.favorite),
+                  //   label: Text('Favorites'),
+                  // ),
                   NavigationRailDestination(
                     icon: Icon(Icons.place),
                     label: Text('Locations'),
@@ -115,18 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: Text('Locale'),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.hiking),
+                    icon: Icon(Icons.device_unknown),
                     label: Text('Boulders'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.question_answer),
-                    label: Text('Boulder Det'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
-                  // print('selected: $value');
-                  // ↓ Replace print with this.
                   setState(() {
                     selectedIndex = value;
                   });
@@ -190,6 +188,7 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
+/// Basic favorites pages
 class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -226,6 +225,7 @@ class FavoritesPage extends StatelessWidget {
   }
 }
 
+/// Example of a big card for showing the Random Text control
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,

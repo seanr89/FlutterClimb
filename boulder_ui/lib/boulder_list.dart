@@ -10,7 +10,7 @@ class BoulderList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // BigCard(pair: pair),
-          Text('Available Boulders'),
+          Text('Boulder List!'),
           SizedBox(height: 10),
           StreamBuilder(
             stream:

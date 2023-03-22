@@ -1,5 +1,4 @@
 class Boulder {
-//These are the values that this Demo model can store
   String? name;
   bool active = true;
   DateTime? activeDate;

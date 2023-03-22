@@ -8,17 +8,17 @@ class BoulderDetail extends StatelessWidget {
       child: Center(
         child: ListView(
           children: [
-            Text('Available Boulders'),
+            Text('Single Boulder Example'),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: InteractiveViewer(
                 panEnabled: false, // Set it to false
-                boundaryMargin: EdgeInsets.all(100),
+                boundaryMargin: EdgeInsets.all(50),
                 minScale: 1,
                 maxScale: 3,
                 child: Image.asset(
                   'images/Orange_1.jpg',
-                  width: 200,
+                  width: 250,
                   height: 500,
                   fit: BoxFit.cover,
                 ),
