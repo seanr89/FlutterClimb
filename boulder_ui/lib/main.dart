@@ -9,10 +9,10 @@ import 'boulder_detail.dart';
 import 'firebase_options.dart';
 
 Future main() async {
+  runApp(MyApp());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -96,16 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
             SafeArea(
               child: NavigationRail(
                 extended:
-                    constraints.maxWidth >= 500, //if width over 500 expand
+                    constraints.maxWidth >= 550, //if width over 500 expand
                 destinations: [
                   NavigationRailDestination(
                     icon: Icon(Icons.hiking),
                     label: Text('Boulder Det'),
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home),
-                    label: Text('Home'),
-                  ),
+                  // NavigationRailDestination(
+                  //   icon: Icon(Icons.home),
+                  //   label: Text('Home'),
+                  // ),
                   // NavigationRailDestination(
                   //   icon: Icon(Icons.favorite),
                   //   label: Text('Favorites'),
