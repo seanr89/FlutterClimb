@@ -91,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
+        appBar: AppBar(title: const Text('Boulder UI')),
         body: Row(
           children: [
             SafeArea(

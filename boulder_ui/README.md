@@ -18,3 +18,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Links
 - CodeLab: [Link](https://codelabs.developers.google.com/codelabs/flutter-codelab-first)
+- url_launcher: [Link](https://blog.logrocket.com/launching-urls-flutter-url_launcher/)

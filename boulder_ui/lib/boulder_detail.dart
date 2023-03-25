@@ -92,7 +92,6 @@ class BoulderSessionForm extends StatelessWidget {
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
-              //appState.getNext();
               print('Saving');
             },
             child: Text('Save'),

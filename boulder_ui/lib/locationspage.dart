@@ -17,7 +17,9 @@ class _LocationsPageState extends State<LocationsPage> {
             if (snapshot.hasData) {
               return ListView(
                 children: snapshot.data!.map((location) {
-                  return ListTile(title: Text(location.name ?? "Unknown"));
+                  return ListTile(
+                      title: Text(location.name ?? "Unknown"),
+                      subtitle: Text(location.url ?? "Unknown"));
                 }).toList(),
               );
             } else {
