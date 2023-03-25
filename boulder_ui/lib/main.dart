@@ -92,54 +92,71 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: AppBar(title: const Text('Boulder UI')),
-        body: Row(
-          children: [
-            SafeArea(
-              child: NavigationRail(
-                extended:
-                    constraints.maxWidth >= 750, //if width over 500 expand
-                destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.hiking),
-                    label: Text('Boulder Det'),
-                  ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.home),
-                  //   label: Text('Home'),
-                  // ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.favorite),
-                  //   label: Text('Favorites'),
-                  // ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.place),
-                    label: Text('Locations'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.map),
-                    label: Text('Locale'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.device_unknown),
-                    label: Text('Boulders'),
-                  ),
-                ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
-              ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.call),
+              label: 'Calls',
             ),
-            Expanded(
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
-              ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.camera),
+              label: 'Camera',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: 'Chats',
             ),
           ],
         ),
+        body: BoulderDetail(),
+        // body: Row(
+        //   children: [
+        //     SafeArea(
+        //       child: NavigationRail(
+        //         extended:
+        //             constraints.maxWidth >= 750, //if width over 500 expand
+        //         destinations: [
+        //           NavigationRailDestination(
+        //             icon: Icon(Icons.hiking),
+        //             label: Text('Boulder Det'),
+        //           ),
+        //           // NavigationRailDestination(
+        //           //   icon: Icon(Icons.home),
+        //           //   label: Text('Home'),
+        //           // ),
+        //           // NavigationRailDestination(
+        //           //   icon: Icon(Icons.favorite),
+        //           //   label: Text('Favorites'),
+        //           // ),
+        //           NavigationRailDestination(
+        //             icon: Icon(Icons.place),
+        //             label: Text('Locations'),
+        //           ),
+        //           NavigationRailDestination(
+        //             icon: Icon(Icons.map),
+        //             label: Text('Locale'),
+        //           ),
+        //           NavigationRailDestination(
+        //             icon: Icon(Icons.device_unknown),
+        //             label: Text('Boulders'),
+        //           ),
+        //         ],
+        //         selectedIndex: selectedIndex,
+        //         onDestinationSelected: (value) {
+        //           setState(() {
+        //             selectedIndex = value;
+        //           });
+        //         },
+        //       ),
+        //     ),
+        //     Expanded(
+        //       child: Container(
+        //         color: Theme.of(context).colorScheme.primaryContainer,
+        //         child: page,
+        //       ),
+        //     ),
+        //   ],
+        // ),
       );
     });
   }

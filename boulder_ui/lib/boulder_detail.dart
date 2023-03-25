@@ -11,7 +11,9 @@ class BoulderDetail extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: InteractiveViewer(
               panEnabled: true, // Set it to false
-              boundaryMargin: EdgeInsets.all(50),
+              scaleEnabled: true,
+              constrained: false,
+              //boundaryMargin: EdgeInsets.all(50),
               minScale: 1,
               maxScale: 3,
               child: Image.asset(
