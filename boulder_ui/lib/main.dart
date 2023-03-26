@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'boulder_detail.dart';
 import 'firebase_options.dart';
+import 'generatorpage.dart';
 
 Future main() async {
   runApp(MyApp());
@@ -61,12 +62,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
+  var _selectedIndex = 0;
+  static const List<Widget> _pages = <Widget>[
+    Icon(
+      Icons.call,
+      size: 150,
+    ),
+    Icon(
+      Icons.camera,
+      size: 150,
+    ),
+    Icon(
+      Icons.chat,
+      size: 150,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     Widget page;
-    switch (selectedIndex) {
+    switch (_selectedIndex) {
       case 0:
         page = BoulderDetail();
         break;
@@ -86,13 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
         page = BoulderList();
         break;
       default:
-        throw UnimplementedError('no widget for $selectedIndex');
+        throw UnimplementedError('no widget for $_selectedIndex');
     }
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: AppBar(title: const Text('Boulder UI')),
         bottomNavigationBar: BottomNavigationBar(
+          mouseCursor: SystemMouseCursors.grab,
+          selectedIconTheme: IconThemeData(color: Colors.amberAccent, size: 40),
+          selectedItemColor: Colors.amberAccent,
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.hiking),
@@ -107,8 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'Settings',
             ),
           ],
+          currentIndex: _selectedIndex, //New
+          onTap: _onItemTapped, //New
         ),
-        body: BoulderDetail(),
+        //body: BoulderDetail(),
+        body: Center(
+          child: _pages.elementAt(_selectedIndex), //New
+        ),
         // body: Row(
         //   children: [
         //     SafeArea(
@@ -160,111 +184,11 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     });
   }
-}
 
-class GeneratorPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BigCard(pair: pair),
-          SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite();
-                },
-                icon: Icon(icon),
-                label: Text('Like'),
-              ),
-              SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  appState.getNext();
-                },
-                child: Text('Next'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Basic favorites pages
-class FavoritesPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
-    if (appState.favorites.isEmpty) {
-      return Center(
-        child: Text('No favorites yet.'),
-      );
-    }
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text('You have '
-                    '${appState.favorites.length} favorites:'),
-              ),
-              for (var pair in appState.favorites)
-                ListTile(
-                  leading: Icon(Icons.favorite),
-                  title: Text(pair.asLowerCase),
-                ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Example of a big card for showing the Random Text control
-class BigCard extends StatelessWidget {
-  const BigCard({
-    super.key,
-    required this.pair,
-  });
-
-  final WordPair pair;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context); // ← Add this.
-    // ↓ Add this.
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
-    );
-    return Card(
-      color: theme.colorScheme.primary, // ← And also this.
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Text(pair.asLowerCase, style: style),
-      ),
-    );
+  //New
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }
