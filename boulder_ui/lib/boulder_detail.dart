@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BoulderDetail extends StatelessWidget {
   @override
@@ -12,8 +13,8 @@ class BoulderDetail extends StatelessWidget {
             child: InteractiveViewer(
               panEnabled: true, // Set it to false
               scaleEnabled: true,
-              constrained: false,
-              //boundaryMargin: EdgeInsets.all(50),
+              //constrained: false,
+              //boundaryMargin: EdgeInsets.all(10),
               minScale: 1,
               maxScale: 3,
               child: Image.asset(
@@ -24,7 +25,7 @@ class BoulderDetail extends StatelessWidget {
               ),
             ),
           ),
-          buttonSection,
+          //buttonSection,
           //textSection
           BoulderSessionForm()
         ],
@@ -88,8 +89,22 @@ class BoulderSessionForm extends StatelessWidget {
           TextFormField(
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Enter your username',
+              labelText: 'Enter boulder name',
             ),
+          ),
+          SizedBox(height: 10),
+          TextField(
+            decoration: new InputDecoration(labelText: "Enter your number"),
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ],
+          ),
+          SizedBox(height: 10),
+          CheckboxListTile(
+            title: Text("title text"), //    <-- label
+            value: false,
+            onChanged: (newValue) {},
           ),
           SizedBox(height: 10),
           ElevatedButton(

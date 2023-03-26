@@ -95,16 +95,16 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.call),
-              label: 'Calls',
+              icon: Icon(Icons.hiking),
+              label: 'Boulder',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              label: 'Camera',
+              icon: Icon(Icons.location_city),
+              label: 'Locations',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Chats',
+              icon: Icon(Icons.settings),
+              label: 'Settings',
             ),
           ],
         ),
