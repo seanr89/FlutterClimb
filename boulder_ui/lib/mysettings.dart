@@ -12,8 +12,7 @@ class MySettings extends StatelessWidget {
       ElevatedButton(
         child: Text("Query Storage"),
         onPressed: () {
-          //const url = 'https://majidhajian.com';
-          final myFuture = storage.ListAllFiles();
+          final myFuture = storage.listAllFiles();
           myFuture.then((response) {
             // (3)
             // if (response.statusCode == 200) {
