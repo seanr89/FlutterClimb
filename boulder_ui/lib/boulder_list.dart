@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/boulder_create.dart';
 
 class BoulderList extends StatelessWidget {
   @override
@@ -37,6 +38,21 @@ class BoulderList extends StatelessWidget {
                 }).toList(),
               );
             },
+          ),
+          SizedBox(height: 20),
+          Align(
+            alignment: Alignment.bottomCenter,
+            // add your floating action button
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Create");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BoulderCreate()),
+                );
+              },
+              child: Icon(Icons.save),
+            ),
           ),
         ],
       ),
