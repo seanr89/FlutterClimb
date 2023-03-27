@@ -7,6 +7,6 @@ import 'models/Location.dart';
 class MySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('My Settinggs'));
+    return Center(child: Text('My Settings'));
   }
 }

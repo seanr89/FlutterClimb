@@ -1,13 +1,11 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:namer_app/boulder_list.dart';
-import 'package:namer_app/locations_listing.dart';
 import 'package:namer_app/locationspage.dart';
+import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'boulder_detail.dart';
 import 'firebase_options.dart';
-import 'generatorpage.dart';
 
 Future main() async {
   runApp(MyApp());
@@ -37,7 +35,6 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-  // ↓ Add this.
   void getNext() {
     current = WordPair.random();
     notifyListeners();
@@ -63,47 +60,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _selectedIndex = 0;
-  static const List<Widget> _pages = <Widget>[
-    Icon(
-      Icons.call,
-      size: 150,
-    ),
-    Icon(
-      Icons.camera,
-      size: 150,
-    ),
-    Icon(
-      Icons.chat,
-      size: 150,
-    ),
+  static List<Widget> _pages = <Widget>[
+    BoulderDetail(),
+    LocationsPage(),
+    MySettings(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (_selectedIndex) {
-      case 0:
-        page = BoulderDetail();
-        break;
-      case 1:
-        page = GeneratorPage();
-        break;
-      // case 1:
-      //   page = FavoritesPage();
-      //   break;
-      case 2:
-        page = LocationsListing();
-        break;
-      case 3:
-        page = LocationsPage();
-        break;
-      case 4:
-        page = BoulderList();
-        break;
-      default:
-        throw UnimplementedError('no widget for $_selectedIndex');
-    }
-
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: AppBar(title: const Text('Boulder UI')),
@@ -129,63 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
           currentIndex: _selectedIndex, //New
           onTap: _onItemTapped, //New
         ),
-        //body: BoulderDetail(),
         body: Center(
           child: _pages.elementAt(_selectedIndex), //New
         ),
-        // body: Row(
-        //   children: [
-        //     SafeArea(
-        //       child: NavigationRail(
-        //         extended:
-        //             constraints.maxWidth >= 750, //if width over 500 expand
-        //         destinations: [
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.hiking),
-        //             label: Text('Boulder Det'),
-        //           ),
-        //           // NavigationRailDestination(
-        //           //   icon: Icon(Icons.home),
-        //           //   label: Text('Home'),
-        //           // ),
-        //           // NavigationRailDestination(
-        //           //   icon: Icon(Icons.favorite),
-        //           //   label: Text('Favorites'),
-        //           // ),
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.place),
-        //             label: Text('Locations'),
-        //           ),
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.map),
-        //             label: Text('Locale'),
-        //           ),
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.device_unknown),
-        //             label: Text('Boulders'),
-        //           ),
-        //         ],
-        //         selectedIndex: selectedIndex,
-        //         onDestinationSelected: (value) {
-        //           setState(() {
-        //             selectedIndex = value;
-        //           });
-        //         },
-        //       ),
-        //     ),
-        //     Expanded(
-        //       child: Container(
-        //         color: Theme.of(context).colorScheme.primaryContainer,
-        //         child: page,
-        //       ),
-        //     ),
-        //   ],
-        // ),
       );
     });
   }
 
-  //New
+  //New - navigation click events
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;

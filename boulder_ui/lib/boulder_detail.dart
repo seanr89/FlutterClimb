@@ -94,7 +94,7 @@ class BoulderSessionForm extends StatelessWidget {
           ),
           SizedBox(height: 10),
           TextField(
-            decoration: new InputDecoration(labelText: "Enter your number"),
+            decoration: InputDecoration(labelText: "Enter your number"),
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
@@ -102,16 +102,20 @@ class BoulderSessionForm extends StatelessWidget {
           ),
           SizedBox(height: 10),
           CheckboxListTile(
-            title: Text("title text"), //    <-- label
+            title: Text("Completed"), //    <-- label
             value: false,
             onChanged: (newValue) {},
           ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              print('Saving');
-            },
-            child: Text('Save'),
+          SizedBox(height: 20),
+          Align(
+            alignment: Alignment.bottomRight,
+            // add your floating action button
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Saving");
+              },
+              child: Icon(Icons.save),
+            ),
           ),
         ],
       ),
