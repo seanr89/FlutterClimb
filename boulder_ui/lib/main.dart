@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/boulder_list.dart';
 import 'package:namer_app/locationspage.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
     BoulderDetail(),
-    LocationsPage(),
+    //LocationsPage(),
+    BoulderList(),
     MySettings(),
   ];
 
@@ -79,11 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.hiking),
-              label: 'Boulder',
+              label: 'Details',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_city),
-              label: 'Locations',
+              label: 'Boulders',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),

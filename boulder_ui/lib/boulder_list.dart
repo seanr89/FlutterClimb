@@ -10,8 +10,8 @@ class BoulderList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // BigCard(pair: pair),
-          Text('Boulder List!'),
-          SizedBox(height: 10),
+          // Text('Boulder List!'),
+          // SizedBox(height: 10),
           StreamBuilder(
             stream:
                 FirebaseFirestore.instance.collection('Boulders').snapshots(),
@@ -29,6 +29,7 @@ class BoulderList extends StatelessWidget {
                     ),
                     title: Center(child: Text(document['name'])),
                     trailing: Icon(Icons.keyboard_arrow_right),
+                    contentPadding: EdgeInsets.all(10.0),
                     onTap: () {
                       print('Clicked');
                     },
@@ -43,10 +44,10 @@ class BoulderList extends StatelessWidget {
   }
 }
 
-class BoulderCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
+// class BoulderCard extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // TODO: implement build
+//     throw UnimplementedError();
+//   }
+// }
