@@ -83,43 +83,45 @@ Column _buildButtonColumn(Color color, IconData icon, String label) {
 class BoulderSessionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Enter boulder name',
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Enter boulder name',
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          TextField(
-            decoration: InputDecoration(labelText: "Enter your number"),
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-          ),
-          SizedBox(height: 10),
-          CheckboxListTile(
-            title: Text("Completed"), //    <-- label
-            value: false,
-            onChanged: (newValue) {},
-          ),
-          SizedBox(height: 10),
-          Align(
-            alignment: Alignment.bottomRight,
-            // add your floating action button
-            child: FloatingActionButton(
-              onPressed: () {
-                print("Saving");
-              },
-              child: Icon(Icons.save),
+            SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(labelText: "Enter your number"),
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
             ),
-          ),
-        ],
+            SizedBox(height: 10),
+            CheckboxListTile(
+              title: Text("Completed"), //    <-- label
+              value: false,
+              onChanged: (newValue) {},
+            ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.bottomRight,
+              // add your floating action button
+              child: FloatingActionButton(
+                onPressed: () {
+                  print("Saving");
+                },
+                child: Icon(Icons.save),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

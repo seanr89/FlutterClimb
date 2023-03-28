@@ -5,14 +5,13 @@ import 'package:namer_app/locationspage.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'boulder_detail.dart';
 import 'firebase_options.dart';
 
 Future main() async {
-  runApp(MyApp());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

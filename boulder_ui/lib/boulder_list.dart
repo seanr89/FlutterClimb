@@ -33,8 +33,7 @@ class BoulderList extends StatelessWidget {
                     trailing: Icon(Icons.keyboard_arrow_right),
                     contentPadding: EdgeInsets.all(10.0),
                     onTap: () {
-                      print('Clicked');
-                      // SecondScreen() should be name of the second screen you created
+                      // BoulderDetail() should be name of the screen to nav too
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -52,7 +51,7 @@ class BoulderList extends StatelessWidget {
             // add your floating action button
             child: FloatingActionButton(
               onPressed: () {
-                print("Create");
+                print("Create New");
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => BoulderCreate()),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../models/Boulder.dart';
 import '../models/Location.dart';
 
 class FirestoreLocations {
@@ -9,5 +10,9 @@ class FirestoreLocations {
         .docs
         .map((item) => Location.fromMap(item.data()))
         .toList();
+  }
+
+  static Future<void> addNewBoulder(Boulder boulder) async {
+    print(boulder.Colour);
   }
 }
