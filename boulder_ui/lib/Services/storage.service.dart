@@ -17,4 +17,9 @@ class Storage {
       print(item);
     }
   }
+
+  Future<void> PushImageToStorage() async {
+    final storage =
+        FirebaseStorage.instanceFor(bucket: "gs://boulderme-8e2a7.appspot.com");
+  }
 }

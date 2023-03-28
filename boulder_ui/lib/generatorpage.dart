@@ -11,11 +11,11 @@ class GeneratorPage extends StatelessWidget {
     var pair = appState.current;
 
     IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
+    // if (appState.favorites.contains(pair)) {
+    //   icon = Icons.favorite;
+    // } else {
+    //   icon = Icons.favorite_border;
+    // }
 
     return Center(
       child: Column(
@@ -28,15 +28,15 @@ class GeneratorPage extends StatelessWidget {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  appState.toggleFavorite();
+                  //appState.toggleFavorite();
                 },
-                icon: Icon(icon),
+                icon: Icon(Icons.add),
                 label: Text('Like'),
               ),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
-                  appState.getNext();
+                  //appState.getNext();
                 },
                 child: Text('Next'),
               ),

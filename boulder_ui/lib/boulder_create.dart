@@ -51,6 +51,14 @@ class BoulderCreate extends StatelessWidget {
               border: UnderlineInputBorder(), labelText: "Enter your grade"),
         ),
         SizedBox(height: 10),
+        ElevatedButton.icon(
+          onPressed: () {
+            //appState.toggleFavorite();
+          },
+          icon: Icon(Icons.add_a_photo),
+          label: Text('Photo'),
+        ),
+        SizedBox(height: 10),
         CheckboxListTile(
           title: Text("Completed"),
           value: false,

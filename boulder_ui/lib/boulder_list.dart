@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:namer_app/boulder_create.dart';
+import 'package:namer_app/boulder_detail.dart';
 
 class BoulderList extends StatelessWidget {
   @override
@@ -33,6 +34,12 @@ class BoulderList extends StatelessWidget {
                     contentPadding: EdgeInsets.all(10.0),
                     onTap: () {
                       print('Clicked');
+                      // SecondScreen() should be name of the second screen you created
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BoulderDetail()),
+                      );
                     },
                   );
                 }).toList(),

@@ -7,7 +7,7 @@ class MySettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(children: [
-      Text('My Settings'),
+      //Text('My Settings'),
       SizedBox(height: 20),
       ElevatedButton(
         child: Text("Query Storage"),
@@ -20,7 +20,8 @@ class MySettings extends StatelessWidget {
             // }
           });
         },
-      )
+      ),
+      ListView()
     ]));
   }
 }

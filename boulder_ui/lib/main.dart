@@ -36,22 +36,22 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-  void getNext() {
-    current = WordPair.random();
-    notifyListeners();
-  }
+  // void getNext() {
+  //   current = WordPair.random();
+  //   notifyListeners();
+  // }
 
   // ↓ Add the code below.
-  var favorites = <WordPair>[];
+  // var favorites = <WordPair>[];
 
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
-    notifyListeners();
-  }
+  // void toggleFavorite() {
+  //   if (favorites.contains(current)) {
+  //     favorites.remove(current);
+  //   } else {
+  //     favorites.add(current);
+  //   }
+  //   notifyListeners();
+  // }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -62,9 +62,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
-    BoulderDetail(),
+    //BoulderDetail(),
     //LocationsPage(),
     BoulderList(),
+    LocationsPage(),
     MySettings(),
   ];
 
@@ -81,11 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.hiking),
-              label: 'Details',
+              label: 'Boulders',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_city),
-              label: 'Boulders',
+              label: 'Locations',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),

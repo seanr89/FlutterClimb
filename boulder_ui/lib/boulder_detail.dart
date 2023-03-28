@@ -4,31 +4,33 @@ import 'package:flutter/services.dart';
 class BoulderDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView(
-        children: [
-          //Text('Single Boulder Example'),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: InteractiveViewer(
-              panEnabled: true, // Set it to false
-              scaleEnabled: true,
-              //constrained: false,
-              //boundaryMargin: EdgeInsets.all(10),
-              minScale: 1,
-              maxScale: 3,
-              child: Image.asset(
-                'images/Orange_1.jpg',
-                width: 250,
-                height: 200,
-                fit: BoxFit.cover,
+    return Material(
+      child: Center(
+        child: ListView(
+          children: [
+            //Text('Single Boulder Example'),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: InteractiveViewer(
+                panEnabled: true, // Set it to false
+                scaleEnabled: true,
+                //constrained: false,
+                //boundaryMargin: EdgeInsets.all(10),
+                minScale: 1,
+                maxScale: 3,
+                child: Image.asset(
+                  'images/Orange_1.jpg',
+                  width: 200,
+                  height: 250,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          //buttonSection,
-          //textSection
-          BoulderSessionForm()
-        ],
+            //buttonSection,
+            //textSection
+            BoulderSessionForm()
+          ],
+        ),
       ),
     );
   }
@@ -106,7 +108,7 @@ class BoulderSessionForm extends StatelessWidget {
             value: false,
             onChanged: (newValue) {},
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Align(
             alignment: Alignment.bottomRight,
             // add your floating action button
