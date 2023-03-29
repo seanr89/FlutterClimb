@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'authentication.dart';
+import 'googlesignin.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   if (snapshot.hasError) {
                     return Text('Error initializing Firebase');
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    //return GoogleSignInButton();
+                    return GoogleSignInButton();
                   }
                   return CircularProgressIndicator(
                       // valueColor: AlwaysStoppedAnimation<Color>(

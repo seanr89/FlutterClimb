@@ -11,16 +11,6 @@ class MySettings extends StatelessWidget {
       SizedBox(height: 20),
       Text('My Settings'),
       SizedBox(height: 20),
-      ElevatedButton(
-        child: Text("Query Storage"),
-        onPressed: () {
-          final myFuture = storage.listAllFiles();
-          myFuture.then((response) {
-            print('Success!');
-            // }
-          });
-        },
-      ),
       FutureBuilder<ListResult>(
           future: storage.listAllFiles(),
           builder: (context, future) {

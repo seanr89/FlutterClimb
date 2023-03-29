@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/Screens/signinscreen.dart';
 import 'package:namer_app/boulder_list.dart';
 import 'package:namer_app/locationspage.dart';
 import 'package:namer_app/mysettings.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
+  // var current = WordPair.random();
   // void getNext() {
   //   current = WordPair.random();
   //   notifyListeners();
@@ -78,8 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.add_alert),
             tooltip: 'Show Snackbar',
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //     const SnackBar(content: Text('This is a snackbar')));
+              // BoulderDetail() should be name of the screen to nav too
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignInScreen()),
+              );
             },
           )
         ]),
