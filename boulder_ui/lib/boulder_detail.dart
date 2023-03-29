@@ -6,8 +6,10 @@ class BoulderDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: ListView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //SizedBox(height: 5),
             //Text('Single Boulder Example'),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -17,11 +19,11 @@ class BoulderDetail extends StatelessWidget {
                 //constrained: false,
                 //boundaryMargin: EdgeInsets.all(10),
                 minScale: 1,
-                maxScale: 3,
+                maxScale: 2,
                 child: Image.asset(
                   'images/Orange_1.jpg',
-                  width: 200,
-                  height: 250,
+                  width: 350,
+                  height: 450,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -36,14 +38,14 @@ class BoulderDetail extends StatelessWidget {
   }
 
   /// draw out the three buttons into a singular row
-  Widget buttonSection = Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      _buildButtonColumn(Colors.orange, Icons.call, 'CALL'),
-      _buildButtonColumn(Colors.orange, Icons.near_me, 'ROUTE'),
-      _buildButtonColumn(Colors.orange, Icons.share, 'SHARE'),
-    ],
-  );
+  // Widget buttonSection = Row(
+  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //   children: [
+  //     _buildButtonColumn(Colors.orange, Icons.call, 'CALL'),
+  //     _buildButtonColumn(Colors.orange, Icons.near_me, 'ROUTE'),
+  //     _buildButtonColumn(Colors.orange, Icons.share, 'SHARE'),
+  //   ],
+  // );
 
   // Widget textSection = const Padding(
   //   padding: EdgeInsets.all(22),
