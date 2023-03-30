@@ -26,6 +26,10 @@ class BoulderCreate extends StatefulWidget {
 
 class _BoulderCreateState extends State<BoulderCreate> {
   XFile? image;
+  String? imageUrl;
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now();
+  TimeOfDay time = TimeOfDay.now();
 
   final ImagePicker picker = ImagePicker();
 
@@ -35,6 +39,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
 
     setState(() {
       image = img;
+      imageUrl = img!.path;
     });
   }
 
@@ -52,7 +57,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
   }
 
   String dropdownValue = BoulderCreate.gradeColours.first;
-  String? imageUrl;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -79,12 +84,6 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 child: Text(value),
               );
             }).toList()),
-        // TextFormField(
-        //   decoration: const InputDecoration(
-        //     border: UnderlineInputBorder(),
-        //     labelText: 'Enter boulder colour',
-        //   ),
-        // ),
         SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
@@ -110,7 +109,12 @@ class _BoulderCreateState extends State<BoulderCreate> {
               ],
             ),
             child: (imageUrl != null)
-                ? Image.network(imageUrl!)
+                ? Image.file(
+                    File(image!.path),
+                    width: double.infinity,
+                    height: 250,
+                    fit: BoxFit.cover,
+                  )
                 : Image.network('https://i.imgur.com/sUFH1Aq.png')),
         ElevatedButton.icon(
           onPressed: () {
@@ -121,10 +125,58 @@ class _BoulderCreateState extends State<BoulderCreate> {
           label: Text('Photo'),
         ),
         SizedBox(height: 10),
-        CheckboxListTile(
-          title: Text("Completed"),
-          value: false,
-          onChanged: (newValue) {},
+        ElevatedButton(
+          child: Text(
+              'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
+          onPressed: () async {
+            final date = await pickDate(startDate);
+            if (date != null) {
+              setState(() {
+                startDate = date;
+              });
+            }
+            return;
+          },
+        ),
+        SizedBox(height: 10),
+        ElevatedButton(
+          child: Text(
+              'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
+          onPressed: () async {
+            final date = await pickDate(startDate);
+            if (date != null) {
+              setState(() {
+                startDate = date;
+              });
+            }
+            return;
+          },
+        ),
+        SizedBox(height: 10),
+        ElevatedButton(
+          child: Text('Time: ${startDate.hour}:${startDate.minute}'),
+          onPressed: () async {
+            final t = await pickTime(startDate);
+            if (t != null) {
+              setState(() {
+                time = t;
+              });
+            }
+            return;
+          },
+        ),
+        SizedBox(height: 10),
+        ElevatedButton(
+          child: Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
+          onPressed: () async {
+            final date = await pickDate(endDate);
+            if (date != null) {
+              setState(() {
+                endDate = date;
+              });
+            }
+            return;
+          },
         ),
         SizedBox(height: 10),
         ElevatedButton(
@@ -137,4 +189,14 @@ class _BoulderCreateState extends State<BoulderCreate> {
       ])),
     ));
   }
+
+  Future<DateTime?> pickDate(date) => showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2100));
+
+  Future<TimeOfDay?> pickTime(date) => showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: date.hour, minute: date.minute));
 }

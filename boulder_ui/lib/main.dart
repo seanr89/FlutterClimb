@@ -26,34 +26,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Boulder App',
         theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        ),
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.blue, brightness: Brightness.dark)),
+        themeMode: ThemeMode.dark,
         home: MyHomePage(),
       ),
     );
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  // var current = WordPair.random();
-  // void getNext() {
-  //   current = WordPair.random();
-  //   notifyListeners();
-  // }
-
-  // ↓ Add the code below.
-  // var favorites = <WordPair>[];
-
-  // void toggleFavorite() {
-  //   if (favorites.contains(current)) {
-  //     favorites.remove(current);
-  //   } else {
-  //     favorites.add(current);
-  //   }
-  //   notifyListeners();
-  // }
-}
+class MyAppState extends ChangeNotifier {}
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -74,21 +57,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Boulder UI'), actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //     const SnackBar(content: Text('This is a snackbar')));
-              // BoulderDetail() should be name of the screen to nav too
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SignInScreen()),
-              );
-            },
-          )
-        ]),
+        appBar: AppBar(
+          title: const Text('Boulder UI'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_alert),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('This is a snackbar')));
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.login),
+              tooltip: 'Sign-in',
+              onPressed: () {
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('This is a snackbar')));
+                // BoulderDetail() should be name of the screen to nav too
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()),
+                );
+              },
+            )
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBar(
           mouseCursor: SystemMouseCursors.grab,
           selectedIconTheme: IconThemeData(color: Colors.amberAccent, size: 40),
