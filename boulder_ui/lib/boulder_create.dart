@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:namer_app/models/Boulder.dart';
 
 class BoulderCreate extends StatefulWidget {
-  Boulder boulder = Boulder();
   static const List<String> gradeColours = <String>[
     'Orange',
     'Blue',
@@ -25,6 +24,7 @@ class BoulderCreate extends StatefulWidget {
 }
 
 class _BoulderCreateState extends State<BoulderCreate> {
+  Boulder boulder = Boulder();
   XFile? image;
   String? imageUrl;
   DateTime startDate = DateTime.now();
@@ -43,9 +43,16 @@ class _BoulderCreateState extends State<BoulderCreate> {
     });
   }
 
+  /// First save step!
   Future saveBoulder() async {
     print('saveBoulder');
 
+    await uploadImage();
+    await createBoulderFromInputs();
+  }
+
+  Future uploadImage() async {
+    print('Uploading image');
     // Create a storage reference from our app
     final storageRef = FirebaseStorage.instance.ref();
 
@@ -54,6 +61,12 @@ class _BoulderCreateState extends State<BoulderCreate> {
     // Create a reference to "mountains.jpg"
     final testRef = storageRef.child(image!.name);
     testRef.putFile(file);
+  }
+
+  /// TODO - Implement
+  Boulder? createBoulderFromInputs() {
+    print("createBoulderFromInputs");
+    return null;
   }
 
   String dropdownValue = BoulderCreate.gradeColours.first;
@@ -65,7 +78,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
       padding: const EdgeInsets.all(12.0),
       child: Center(
           child: Column(children: [
-        SizedBox(height: 50),
+        SizedBox(height: 10),
         DropdownButton<String>(
             value: dropdownValue,
             isExpanded: true,
@@ -84,12 +97,12 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 child: Text(value),
               );
             }).toList()),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         TextField(
           decoration: InputDecoration(
               border: UnderlineInputBorder(), labelText: "Enter a grade"),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         Container(
             margin: EdgeInsets.all(15),
             padding: EdgeInsets.all(15),
@@ -124,7 +137,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
           icon: Icon(Icons.add_a_photo),
           label: Text('Photo'),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         ElevatedButton(
           child: Text(
               'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
@@ -138,34 +151,20 @@ class _BoulderCreateState extends State<BoulderCreate> {
             return;
           },
         ),
-        SizedBox(height: 10),
-        ElevatedButton(
-          child: Text(
-              'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
-          onPressed: () async {
-            final date = await pickDate(startDate);
-            if (date != null) {
-              setState(() {
-                startDate = date;
-              });
-            }
-            return;
-          },
-        ),
-        SizedBox(height: 10),
-        ElevatedButton(
-          child: Text('Time: ${startDate.hour}:${startDate.minute}'),
-          onPressed: () async {
-            final t = await pickTime(startDate);
-            if (t != null) {
-              setState(() {
-                time = t;
-              });
-            }
-            return;
-          },
-        ),
-        SizedBox(height: 10),
+        // SizedBox(height: 5),
+        // ElevatedButton(
+        //   child: Text('Time: ${startDate.hour}:${startDate.minute}'),
+        //   onPressed: () async {
+        //     final t = await pickTime(startDate);
+        //     if (t != null) {
+        //       setState(() {
+        //         time = t;
+        //       });
+        //     }
+        //     return;
+        //   },
+        // ),
+        SizedBox(height: 5),
         ElevatedButton(
           child: Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
           onPressed: () async {
@@ -178,7 +177,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
             return;
           },
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         ElevatedButton(
           child: Text("Save"),
           onPressed: () async {

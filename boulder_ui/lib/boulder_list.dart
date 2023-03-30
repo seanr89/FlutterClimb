@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/boulder_create.dart';
 import 'package:namer_app/boulder_detail.dart';
 
+import 'models/Boulder.dart';
+
 class BoulderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,8 @@ class BoulderList extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BoulderDetail()),
+                            builder: (context) => BoulderDetail(
+                                Boulder.fromMap(document as Map))),
                       );
                     },
                   );

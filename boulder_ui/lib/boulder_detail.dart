@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:namer_app/models/Boulder.dart';
 
 class BoulderDetail extends StatelessWidget {
+  BoulderDetail(Boulder boulder);
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -9,8 +12,6 @@ class BoulderDetail extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //SizedBox(height: 5),
-            //Text('Single Boulder Example'),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: InteractiveViewer(
@@ -23,7 +24,7 @@ class BoulderDetail extends StatelessWidget {
                 child: Image.asset(
                   'images/Orange_1.jpg',
                   width: 350,
-                  height: 450,
+                  height: 425,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -36,31 +37,9 @@ class BoulderDetail extends StatelessWidget {
       ),
     );
   }
-
-  /// draw out the three buttons into a singular row
-  // Widget buttonSection = Row(
-  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //   children: [
-  //     _buildButtonColumn(Colors.orange, Icons.call, 'CALL'),
-  //     _buildButtonColumn(Colors.orange, Icons.near_me, 'ROUTE'),
-  //     _buildButtonColumn(Colors.orange, Icons.share, 'SHARE'),
-  //   ],
-  // );
-
-  // Widget textSection = const Padding(
-  //   padding: EdgeInsets.all(22),
-  //   child: Text(
-  //     'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-  //     'Alps. Situated 1,578 meters above sea level, it is one of the '
-  //     'larger Alpine Lakes',
-  //     softWrap: true,
-  //   ),
-  // );
 }
 
-/**
- * Base button selector button event
- */
+/// Base button selector button event
 Column _buildButtonColumn(Color color, IconData icon, String label) {
   return Column(
     mainAxisSize: MainAxisSize.min,
@@ -88,7 +67,7 @@ class BoulderSessionForm extends StatelessWidget {
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             TextFormField(
