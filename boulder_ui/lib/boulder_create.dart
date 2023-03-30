@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -35,6 +38,19 @@ class _BoulderCreateState extends State<BoulderCreate> {
     });
   }
 
+  Future saveBoulder() async {
+    print('saveBoulder');
+
+    // Create a storage reference from our app
+    final storageRef = FirebaseStorage.instance.ref();
+
+    var file = File(image!.path);
+
+    // Create a reference to "mountains.jpg"
+    final testRef = storageRef.child(image!.name);
+    testRef.putFile(file);
+  }
+
   String dropdownValue = BoulderCreate.gradeColours.first;
   String? imageUrl;
   @override
@@ -63,16 +79,16 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 child: Text(value),
               );
             }).toList()),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: UnderlineInputBorder(),
-            labelText: 'Enter boulder colour',
-          ),
-        ),
+        // TextFormField(
+        //   decoration: const InputDecoration(
+        //     border: UnderlineInputBorder(),
+        //     labelText: 'Enter boulder colour',
+        //   ),
+        // ),
         SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
-              border: UnderlineInputBorder(), labelText: "Enter your grade"),
+              border: UnderlineInputBorder(), labelText: "Enter a grade"),
         ),
         SizedBox(height: 10),
         Container(
@@ -113,8 +129,9 @@ class _BoulderCreateState extends State<BoulderCreate> {
         SizedBox(height: 10),
         ElevatedButton(
           child: Text("Save"),
-          onPressed: () {
-            print('Save');
+          onPressed: () async {
+            //print('Save');
+            await saveBoulder();
           },
         )
       ])),
