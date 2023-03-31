@@ -51,6 +51,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
     await createBoulderFromInputs();
   }
 
+  // support image uploading!
   Future uploadImage() async {
     print('Uploading image');
     // Create a storage reference from our app

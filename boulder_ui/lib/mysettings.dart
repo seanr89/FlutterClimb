@@ -19,13 +19,18 @@ class MySettings extends StatelessWidget {
                   'Waiting'); // Display empty container if the list is empty
             } else {
               List<Reference> list = future.data!.items;
-              return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return Text(list[index].fullPath);
-                  });
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        return Text(list[index].fullPath);
+                      }),
+                ),
+              );
             }
           }),
     ]));
