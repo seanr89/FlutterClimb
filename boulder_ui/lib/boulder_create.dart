@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:namer_app/Repositories/BoulderRepository.dart';
 import 'package:namer_app/models/Boulder.dart';
 
 class BoulderCreate extends StatefulWidget {
@@ -47,6 +48,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
   TimeOfDay time = TimeOfDay.now();
 
   final ImagePicker picker = ImagePicker();
+  final boulderRepo = BoulderRepository();
 
   //we can upload image from camera or from gallery based on parameter
   Future getImage(ImageSource media) async {
@@ -63,7 +65,9 @@ class _BoulderCreateState extends State<BoulderCreate> {
     print('saveBoulder');
 
     await uploadImage();
-    await createBoulderFromInputs();
+    createBoulderFromInputs();
+
+    boulderRepo.createBoulder(boulder);
   }
 
   // support image uploading!
@@ -82,7 +86,8 @@ class _BoulderCreateState extends State<BoulderCreate> {
   /// TODO - Implement
   Boulder? createBoulderFromInputs() {
     print("createBoulderFromInputs");
-    return null;
+
+    return boulder;
   }
 
   String dropdownValue = BoulderCreate.gradeColours.first;
@@ -94,29 +99,45 @@ class _BoulderCreateState extends State<BoulderCreate> {
       padding: const EdgeInsets.all(12.0),
       child: Center(
           child: Column(children: [
-        SizedBox(height: 10),
-        DropdownButton<String>(
-            value: dropdownValue,
-            isExpanded: true,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            underline: Container(
-              height: 2,
-            ),
-            onChanged: (String? value) {
-              dropdownValue = value!;
-            },
-            items: BoulderCreate.gradeColours
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList()),
+        SizedBox(height: 35),
+        TextField(
+          decoration: InputDecoration(
+              border: UnderlineInputBorder(), labelText: "Enter a name"),
+          onChanged: (text) {
+            boulder.name = text;
+          },
+        ),
+        SizedBox(height: 5),
+        Row(
+          children: [
+            Text("Select a Colour"),
+            DropdownButton<String>(
+                value: dropdownValue,
+                isExpanded: true,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                underline: Container(
+                  height: 2,
+                ),
+                onChanged: (String? value) {
+                  dropdownValue = value!;
+                },
+                items: BoulderCreate.gradeColours
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList()),
+          ],
+        ),
         SizedBox(height: 5),
         TextField(
           decoration: InputDecoration(
               border: UnderlineInputBorder(), labelText: "Enter a grade"),
+          onChanged: (text) {
+            boulder.grade = text;
+          },
         ),
         SizedBox(height: 5),
         Container(
