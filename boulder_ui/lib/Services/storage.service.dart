@@ -27,4 +27,13 @@ class Storage {
 
     return img;
   }
+
+  Future<String> getDownloadURLFromRef(String imgRef) async {
+// Create a reference to a file from a Google Cloud Storage URI
+    final storage =
+        FirebaseStorage.instanceFor(bucket: "gs://boulderme-8e2a7.appspot.com");
+
+    final imageRef = storage.ref().child(imgRef);
+    return await imageRef.getDownloadURL();
+  }
 }

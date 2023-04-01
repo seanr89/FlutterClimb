@@ -15,14 +15,14 @@ class ExampleDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(height: 10.0),
-            new FutureBuilder<String>(
+            FutureBuilder<String>(
               future: loadImage(),
               builder: (BuildContext context, AsyncSnapshot<String> image) {
                 if (image.hasData) {
                   return Image.network(image.data.toString()); // image is ready
                   //return Text('data');
                 } else {
-                  return new Container(); // placeholder
+                  return Container(); // placeholder
                 }
               },
             ),
@@ -54,13 +54,8 @@ class ExampleDialog extends StatelessWidget {
     //var _file_name = variable['path_profile_image'];
 
     //select the image url
-    Reference ref = FirebaseStorage.instance
-        .ref()
-        .child("images/user/profile_images/${_userID}")
-        .child(_file_name[0]);
-
-    //get image url from firebase storage
-    var url = await ref.getDownloadURL();
+    //TODO
+    String url = "Hello";
     print('url: ' + url);
     return url;
   }
