@@ -1,4 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 class Storage {
   Future<ListResult> listAllFiles() async {
@@ -14,8 +15,16 @@ class Storage {
     return listResult;
   }
 
-  // Future<void> PushImageToStorage() async {
-  //   final storage =
-  //       FirebaseStorage.instanceFor(bucket: "gs://boulderme-8e2a7.appspot.com");
-  // }
+  Future<Image> getFileFromPath(String imgRef) async {
+    // Create a reference to a file from a Google Cloud Storage URI
+    final storage =
+        FirebaseStorage.instanceFor(bucket: "gs://boulderme-8e2a7.appspot.com");
+
+    final imageRef = storage.ref().child(imgRef);
+    var url = await imageRef.getDownloadURL();
+
+    Image img = Image.network(url);
+
+    return img;
+  }
 }

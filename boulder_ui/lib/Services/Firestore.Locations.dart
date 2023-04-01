@@ -11,8 +11,4 @@ class FirestoreLocations {
         .map((item) => Location.fromMap(item.data()))
         .toList();
   }
-
-  // static Future<void> addNewBoulder(Boulder boulder) async {
-  //   print(boulder.Colour);
-  // }
 }

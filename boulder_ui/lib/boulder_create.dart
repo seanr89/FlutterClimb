@@ -93,10 +93,12 @@ class _BoulderCreateState extends State<BoulderCreate> {
     boulder.imgRef = ref.fullPath;
     boulder.activeDate = startDate;
     boulder.colour = colourValue;
+    boulder.grade = gradeValue;
     return boulder;
   }
 
   String colourValue = BoulderCreate.gradeColours.first;
+  String gradeValue = BoulderCreate.grades.first;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
             //Text("Select a Colour:"),
             DropdownButton<String>(
                 hint: Text('Select a colour'),
-                //value: dropdownValue,
+                value: colourValue,
                 //isExpanded: true,
                 icon: const Icon(Icons.arrow_downward),
                 elevation: 16,
@@ -140,12 +142,30 @@ class _BoulderCreateState extends State<BoulderCreate> {
           ],
         ),
         SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-              border: UnderlineInputBorder(), labelText: "Enter a grade"),
-          onChanged: (text) {
-            boulder.grade = text;
-          },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            //Text("Select a Colour:"),
+            DropdownButton<String>(
+                hint: Text('Select a grade'),
+                value: gradeValue,
+                //isExpanded: true,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                underline: Container(
+                  height: 2,
+                ),
+                onChanged: (String? value) {
+                  gradeValue = value!;
+                },
+                items: BoulderCreate.grades
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList()),
+          ],
         ),
         SizedBox(height: 5),
         Container(
