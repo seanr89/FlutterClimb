@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/Screens/dialog/ExampleDialog.dart';
 import 'package:namer_app/Screens/signinscreen.dart';
 import 'package:namer_app/boulder_list.dart';
 import 'package:namer_app/locationspage.dart';
@@ -72,14 +73,15 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.bug_report),
               tooltip: 'Show Dialog',
               onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("Success"),
-                        content: Text("Saved successfully"),
-                      );
-                    });
+                showDialog(context: context, builder: (_) => ExampleDialog());
+                // showDialog(
+                //     context: context,
+                //     builder: (BuildContext context) {
+                //       return AlertDialog(
+                //         title: Text("Success"),
+                //         content: Text("Saved successfully"),
+                //       );
+                //     });
               },
             ),
             IconButton(
