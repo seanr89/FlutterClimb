@@ -60,12 +60,26 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: const Text('Boulder UI'),
           actions: <Widget>[
+            // IconButton(
+            //   icon: const Icon(Icons.add_alert),
+            //   tooltip: 'Show Snackbar',
+            //   onPressed: () {
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //         const SnackBar(content: Text('This is a snackbar')));
+            //   },
+            // ),
             IconButton(
-              icon: const Icon(Icons.add_alert),
-              tooltip: 'Show Snackbar',
+              icon: const Icon(Icons.bug_report),
+              tooltip: 'Show Dialog',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Success"),
+                        content: Text("Saved successfully"),
+                      );
+                    });
               },
             ),
             IconButton(
