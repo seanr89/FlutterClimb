@@ -68,11 +68,3 @@ class BoulderList extends StatelessWidget {
     );
   }
 }
-
-// class BoulderCard extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: implement build
-//     throw UnimplementedError();
-//   }
-// }

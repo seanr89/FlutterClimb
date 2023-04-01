@@ -88,9 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.login),
               tooltip: 'Sign-in',
               onPressed: () {
-                // ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('This is a snackbar')));
-                // BoulderDetail() should be name of the screen to nav too
+                // SignInScreen - Screen to nav too
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignInScreen()),

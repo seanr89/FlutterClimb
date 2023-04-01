@@ -92,10 +92,11 @@ class _BoulderCreateState extends State<BoulderCreate> {
     print("createBoulderFromInputs");
     boulder.imgRef = ref.fullPath;
     boulder.activeDate = startDate;
+    boulder.colour = colourValue;
     return boulder;
   }
 
-  String dropdownValue = BoulderCreate.gradeColours.first;
+  String colourValue = BoulderCreate.gradeColours.first;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +128,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
                   height: 2,
                 ),
                 onChanged: (String? value) {
-                  dropdownValue = value!;
+                  colourValue = value!;
                 },
                 items: BoulderCreate.gradeColours
                     .map<DropdownMenuItem<String>>((String value) {

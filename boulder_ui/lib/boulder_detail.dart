@@ -15,7 +15,7 @@ class BoulderDetail extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: InteractiveViewer(
-                panEnabled: true, // Set it to false
+                panEnabled: true,
                 scaleEnabled: true,
                 //constrained: false,
                 //boundaryMargin: EdgeInsets.all(10),
