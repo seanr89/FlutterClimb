@@ -1,19 +1,21 @@
 import 'package:firebase_storage/firebase_storage.dart';
 
 class Boulder {
+  String? id;
   String? name;
   bool active = true;
   String? colour;
   String? grade;
   DateTime? activeDate;
   DateTime? deactiveDate;
-  Reference? imgRef;
+  String? imgRef;
 
   //default Constructor
-  Boulder({name, active, activeDate, deactiveDate});
+  Boulder({id, name, active, activeDate, deactiveDate});
 
   factory Boulder.fromMap(Map map) {
     return Boulder(
+        id: map['id'],
         name: map['name'],
         active: map['active'],
         activeDate: map['activeDate'],
@@ -26,7 +28,9 @@ class Boulder {
       "colour": colour,
       "grade": grade,
       "active": active,
-      "activeDate": activeDate
+      "activeDate": activeDate,
+      "deactiveDate": deactiveDate,
+      "imgRef": imgRef
     };
   }
 }

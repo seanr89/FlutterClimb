@@ -47,6 +47,8 @@ class _BoulderCreateState extends State<BoulderCreate> {
   DateTime endDate = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
 
+  bool saveEnabled = false;
+
   final ImagePicker picker = ImagePicker();
   final boulderRepo = BoulderRepository();
 
@@ -57,21 +59,22 @@ class _BoulderCreateState extends State<BoulderCreate> {
     setState(() {
       image = img;
       imageUrl = img!.path;
+      saveEnabled = true;
     });
   }
 
   /// First save step!
-  Future saveBoulder() async {
+  Future<bool> saveBoulder() async {
     print('saveBoulder');
 
-    await uploadImage();
-    createBoulderFromInputs();
+    var ref = uploadImage();
+    createBoulderFromInputs(ref);
 
-    boulderRepo.createBoulder(boulder);
+    return await boulderRepo.createBoulder(boulder);
   }
 
   // support image uploading!
-  Future uploadImage() async {
+  Reference uploadImage() {
     print('Uploading image');
     // Create a storage reference from our app
     final storageRef = FirebaseStorage.instance.ref();
@@ -81,12 +84,14 @@ class _BoulderCreateState extends State<BoulderCreate> {
     // Create a reference to "mountains.jpg"
     final testRef = storageRef.child(image!.name);
     testRef.putFile(file);
+    return testRef;
   }
 
   /// TODO - Implement
-  Boulder? createBoulderFromInputs() {
+  Boulder? createBoulderFromInputs(Reference ref) {
     print("createBoulderFromInputs");
-
+    boulder.imgRef = ref.fullPath;
+    boulder.activeDate = startDate;
     return boulder;
   }
 
@@ -107,13 +112,15 @@ class _BoulderCreateState extends State<BoulderCreate> {
             boulder.name = text;
           },
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Select a Colour"),
+            //Text("Select a Colour:"),
             DropdownButton<String>(
-                value: dropdownValue,
-                isExpanded: true,
+                hint: Text('Select a colour'),
+                //value: dropdownValue,
+                //isExpanded: true,
                 icon: const Icon(Icons.arrow_downward),
                 elevation: 16,
                 underline: Container(
@@ -131,7 +138,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 }).toList()),
           ],
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
               border: UnderlineInputBorder(), labelText: "Enter a grade"),
@@ -174,19 +181,22 @@ class _BoulderCreateState extends State<BoulderCreate> {
           icon: Icon(Icons.add_a_photo),
           label: Text('Photo'),
         ),
-        SizedBox(height: 5),
-        ElevatedButton(
-          child: Text(
-              'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
-          onPressed: () async {
-            final date = await pickDate(startDate);
-            if (date != null) {
-              setState(() {
-                startDate = date;
-              });
-            }
-            return;
-          },
+        SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            child: Text(
+                'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
+            onPressed: () async {
+              final date = await pickDate(startDate);
+              if (date != null) {
+                setState(() {
+                  startDate = date;
+                });
+              }
+              return;
+            },
+          ),
         ),
         // SizedBox(height: 5),
         // ElevatedButton(
@@ -201,26 +211,35 @@ class _BoulderCreateState extends State<BoulderCreate> {
         //     return;
         //   },
         // ),
-        SizedBox(height: 5),
-        ElevatedButton(
-          child: Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
-          onPressed: () async {
-            final date = await pickDate(endDate);
-            if (date != null) {
-              setState(() {
-                endDate = date;
-              });
-            }
-            return;
-          },
+        SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            child: Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
+            onPressed: () async {
+              final date = await pickDate(endDate);
+              if (date != null) {
+                setState(() {
+                  endDate = date;
+                });
+              }
+              return;
+            },
+          ),
         ),
         SizedBox(height: 5),
         ElevatedButton(
+          onPressed: saveEnabled
+              ? () async {
+                  //print('Save');
+                  final res = await saveBoulder();
+                  if (res) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Record Saved')));
+                  }
+                }
+              : null,
           child: Text("Save"),
-          onPressed: () async {
-            //print('Save');
-            await saveBoulder();
-          },
         )
       ])),
     ));

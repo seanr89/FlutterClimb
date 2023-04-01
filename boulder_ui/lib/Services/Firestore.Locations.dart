@@ -12,7 +12,7 @@ class FirestoreLocations {
         .toList();
   }
 
-  static Future<void> addNewBoulder(Boulder boulder) async {
-    print(boulder.Colour);
-  }
+  // static Future<void> addNewBoulder(Boulder boulder) async {
+  //   print(boulder.Colour);
+  // }
 }

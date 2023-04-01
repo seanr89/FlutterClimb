@@ -40,26 +40,26 @@ class BoulderDetail extends StatelessWidget {
 }
 
 /// Base button selector button event
-Column _buildButtonColumn(Color color, IconData icon, String label) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Icon(icon, color: color),
-      Container(
-        margin: const EdgeInsets.only(top: 4),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w300,
-            color: color,
-          ),
-        ),
-      ),
-    ],
-  );
-}
+// Column _buildButtonColumn(Color color, IconData icon, String label) {
+//   return Column(
+//     mainAxisSize: MainAxisSize.min,
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     children: [
+//       Icon(icon, color: color),
+//       Container(
+//         margin: const EdgeInsets.only(top: 4),
+//         child: Text(
+//           label,
+//           style: TextStyle(
+//             fontSize: 12,
+//             fontWeight: FontWeight.w300,
+//             color: color,
+//           ),
+//         ),
+//       ),
+//     ],
+//   );
+// }
 
 class BoulderSessionForm extends StatelessWidget {
   @override
