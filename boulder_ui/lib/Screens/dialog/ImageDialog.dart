@@ -11,18 +11,23 @@ class ImageDialog extends StatelessWidget {
     return Dialog(
       elevation: 0,
       backgroundColor: Colors.blue,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Container(
-        height: 350,
+        height: 600,
+        width: 500,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 10.0),
+            //SizedBox(height: 10.0),
             FutureBuilder<String>(
               future: loadImage(),
               builder: (BuildContext context, AsyncSnapshot<String> image) {
                 if (image.hasData) {
-                  return Image.network(image.data.toString()); // image is ready
+                  return Image.network(
+                    image.data.toString(),
+                    width: 270,
+                    height: 500,
+                  ); // image is ready
                   //return Text('data');
                 } else {
                   return Container(); // placeholder
@@ -34,7 +39,7 @@ class ImageDialog extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
                 child: Text("Close")),
-            SizedBox(height: 10.0),
+            SizedBox(height: 5.0),
           ],
         ),
       ),
@@ -43,7 +48,7 @@ class ImageDialog extends StatelessWidget {
 
   Future<String> loadImage() async {
     //select the image url
-    String url = await fileStorage.getDownloadURLFromRef('Orange_2.png');
+    String url = await fileStorage.getDownloadURLFromRef('Orange_2.jpg');
     print('url: $url');
     return url;
   }

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/models/Boulder.dart';
 
+import 'Services/storage.service.dart';
+
 class BoulderDetail extends StatelessWidget {
   BoulderDetail(Boulder boulder);
+  Storage fileStorage = Storage();
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +17,35 @@ class BoulderDetail extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: InteractiveViewer(
-                panEnabled: true,
-                scaleEnabled: true,
-                //constrained: false,
-                //boundaryMargin: EdgeInsets.all(10),
-                minScale: 1,
-                maxScale: 2,
-                child: Image.asset(
-                  'images/Orange_1.jpg',
-                  width: 350,
-                  height: 425,
-                  fit: BoxFit.cover,
-                ),
+              child: FutureBuilder<String>(
+                future: loadImage(),
+                builder: (BuildContext context, AsyncSnapshot<String> image) {
+                  if (image.hasData) {
+                    return Image.network(
+                      image.data.toString(),
+                      width: 350,
+                      height: 425,
+                    ); // image is ready
+                    //return Text('data');
+                  } else {
+                    return CircularProgressIndicator(); // placeholder
+                  }
+                },
               ),
+              // child: InteractiveViewer(
+              //   panEnabled: true,
+              //   scaleEnabled: true,
+              //   //constrained: false,
+              //   //boundaryMargin: EdgeInsets.all(10),
+              //   minScale: 1,
+              //   maxScale: 2,
+              //   child: Image.asset(
+              //     'images/Orange_1.jpg',
+              //     width: 350,
+              //     height: 425,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
             ),
             //buttonSection,
             //textSection
@@ -36,6 +54,13 @@ class BoulderDetail extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<String> loadImage() async {
+    //select the image url
+    String url = await fileStorage.getDownloadURLFromRef('Orange_2.jpg');
+    print('url: $url');
+    return url;
   }
 }
 
