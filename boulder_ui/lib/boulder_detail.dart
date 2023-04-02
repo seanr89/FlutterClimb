@@ -36,7 +36,7 @@ class BoulderDetail extends StatelessWidget {
                       child: Image.network(
                         image.data.toString(),
                         width: 350,
-                        height: 425,
+                        height: 450,
                       ),
                     );
                   } else {
@@ -46,20 +46,6 @@ class BoulderDetail extends StatelessWidget {
                   }
                 },
               ),
-              // child: InteractiveViewer(
-              //   panEnabled: true,
-              //   scaleEnabled: true,
-              //   //constrained: false,
-              //   //boundaryMargin: EdgeInsets.all(10),
-              //   minScale: 1,
-              //   maxScale: 2,
-              //   child: Image.asset(
-              //     'images/Orange_1.jpg',
-              //     width: 350,
-              //     height: 425,
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
             ),
             BoulderSessionForm(currentBoulder)
           ],
@@ -85,47 +71,39 @@ class BoulderSessionForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            boulderSection,
-            // SizedBox(height: 10),
-            // TextField(
-            //   decoration: InputDecoration(labelText: "Enter your number"),
-            //   keyboardType: TextInputType.number,
-            //   inputFormatters: <TextInputFormatter>[
-            //     FilteringTextInputFormatter.digitsOnly
-            //   ],
-            // ),
-            SizedBox(height: 10),
-            CheckboxListTile(
-              title: Text("Completed"), //    <-- label
-              value: false,
-              onChanged: (newValue) {},
+      child: Column(
+        children: [
+          boulderSection,
+          SizedBox(height: 10),
+          CheckboxListTile(
+            title: Text("Completed"), //    <-- label
+            value: false,
+            onChanged: (newValue) {},
+          ),
+          SizedBox(height: 10),
+          Align(
+            alignment: Alignment.bottomRight,
+            // add your floating action button
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Saving");
+              },
+              child: Icon(Icons.save),
             ),
-            SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomRight,
-              // add your floating action button
-              child: FloatingActionButton(
-                onPressed: () {
-                  print("Saving");
-                },
-                child: Icon(Icons.save),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget boulderSection = Container(
-    child: Row(
+    child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildDetailRow(sessionBoulder?.colour ?? "N/A", Icons.call, 'Grade'),
+        _buildDetailRow(sessionBoulder?.grade ?? "N/A", Icons.grade, 'Grade: '),
+        SizedBox(height: 10),
+        _buildDetailRow(
+            sessionBoulder?.colour ?? "N/A", Icons.colorize, 'Colour: '),
         // _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
         // _buildButtonColumn(color, Icons.share, 'SHARE'),
       ],
@@ -136,12 +114,14 @@ class BoulderSessionForm extends StatelessWidget {
 Row _buildDetailRow(String content, IconData icon, String label) {
   return Row(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(icon),
+        SizedBox(width: 15.0),
         Text(label,
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
-        Text(content, style: TextStyle(fontSize: 10))
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        SizedBox(width: 5.0),
+        Text(content, style: TextStyle(fontSize: 18))
       ]);
 }
 
