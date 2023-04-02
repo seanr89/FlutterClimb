@@ -63,19 +63,17 @@ class _BoulderCreateState extends State<BoulderCreate> {
     });
   }
 
-  /// First save step!
+  /// Start the saving process
   Future<bool> saveBoulder() async {
     print('saveBoulder');
-
     var ref = uploadImage();
     createBoulderFromInputs(ref);
-
     return await boulderRepo.createBoulder(boulder);
   }
 
   // support image uploading!
   Reference uploadImage() {
-    print('Uploading image');
+    //print('Uploading image');
     // Create a storage reference from our app
     final storageRef = FirebaseStorage.instance.ref();
 
@@ -87,9 +85,9 @@ class _BoulderCreateState extends State<BoulderCreate> {
     return testRef;
   }
 
-  /// TODO - Implement
+  /// ensure the boulder model is properly updated
   Boulder? createBoulderFromInputs(Reference ref) {
-    print("createBoulderFromInputs");
+    //print("createBoulderFromInputs");
     boulder.imgRef = ref.fullPath;
     boulder.activeDate = startDate;
     boulder.colour = colourValue;
@@ -196,7 +194,6 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 : Image.network('https://i.imgur.com/sUFH1Aq.png')),
         ElevatedButton.icon(
           onPressed: () {
-            //appState.toggleFavorite();
             getImage(ImageSource.gallery);
           },
           icon: Icon(Icons.add_a_photo),

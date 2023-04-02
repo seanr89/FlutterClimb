@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/models/Boulder.dart';
@@ -59,7 +61,7 @@ class BoulderDetail extends StatelessWidget {
               //   ),
               // ),
             ),
-            BoulderSessionForm()
+            BoulderSessionForm(currentBoulder)
           ],
         ),
       ),
@@ -76,6 +78,10 @@ class BoulderDetail extends StatelessWidget {
 }
 
 class BoulderSessionForm extends StatelessWidget {
+  static Boulder? sessionBoulder;
+  BoulderSessionForm(Boulder? boulder) {
+    sessionBoulder = boulder;
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -84,20 +90,15 @@ class BoulderSessionForm extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter boulder name',
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(labelText: "Enter your number"),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-            ),
+            boulderSection,
+            // SizedBox(height: 10),
+            // TextField(
+            //   decoration: InputDecoration(labelText: "Enter your number"),
+            //   keyboardType: TextInputType.number,
+            //   inputFormatters: <TextInputFormatter>[
+            //     FilteringTextInputFormatter.digitsOnly
+            //   ],
+            // ),
             SizedBox(height: 10),
             CheckboxListTile(
               title: Text("Completed"), //    <-- label
@@ -120,8 +121,30 @@ class BoulderSessionForm extends StatelessWidget {
       ),
     );
   }
+
+  Widget boulderSection = Container(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildDetailRow(sessionBoulder?.colour ?? "N/A", Icons.call, 'Grade'),
+        // _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+        // _buildButtonColumn(color, Icons.share, 'SHARE'),
+      ],
+    ),
+  );
 }
 
+Row _buildDetailRow(String content, IconData icon, String label) {
+  return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon),
+        Text(label,
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+        Text(content, style: TextStyle(fontSize: 10))
+      ]);
+}
 
 /// Base button selector button event
 // Column _buildButtonColumn(Color color, IconData icon, String label) {
