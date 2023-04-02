@@ -5,7 +5,10 @@ import 'package:namer_app/models/Boulder.dart';
 import 'Services/storage.service.dart';
 
 class BoulderDetail extends StatelessWidget {
-  BoulderDetail(Boulder boulder);
+  Boulder? currentBoulder;
+  BoulderDetail(Boulder boulder) {
+    currentBoulder = boulder;
+  }
   Storage fileStorage = Storage();
 
   @override
@@ -21,14 +24,24 @@ class BoulderDetail extends StatelessWidget {
                 future: loadImage(),
                 builder: (BuildContext context, AsyncSnapshot<String> image) {
                   if (image.hasData) {
-                    return Image.network(
-                      image.data.toString(),
-                      width: 350,
-                      height: 425,
+                    return InteractiveViewer(
+                      panEnabled: true,
+                      scaleEnabled: true,
+                      //constrained: false,
+                      //boundaryMargin: EdgeInsets.all(10),
+                      minScale: 1,
+                      maxScale: 2,
+                      child: Image.network(
+                        image.data.toString(),
+                        width: 350,
+                        height: 425,
+                      ),
                     ); // image is ready
                     //return Text('data');
                   } else {
-                    return CircularProgressIndicator(); // placeholder
+                    return CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white)); // placeholder
                   }
                 },
               ),
@@ -58,7 +71,8 @@ class BoulderDetail extends StatelessWidget {
 
   Future<String> loadImage() async {
     //select the image url
-    String url = await fileStorage.getDownloadURLFromRef('Orange_2.jpg');
+    String url = await fileStorage
+        .getDownloadURLFromRef(currentBoulder!.imgRef ?? "Orange_1.jpg");
     print('url: $url');
     return url;
   }
