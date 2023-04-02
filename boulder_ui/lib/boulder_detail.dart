@@ -36,8 +36,7 @@ class BoulderDetail extends StatelessWidget {
                         width: 350,
                         height: 425,
                       ),
-                    ); // image is ready
-                    //return Text('data');
+                    );
                   } else {
                     return CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
@@ -60,8 +59,6 @@ class BoulderDetail extends StatelessWidget {
               //   ),
               // ),
             ),
-            //buttonSection,
-            //textSection
             BoulderSessionForm()
           ],
         ),

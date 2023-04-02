@@ -60,7 +60,7 @@ class BoulderList extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => BoulderCreate()),
                 );
               },
-              child: Icon(Icons.save),
+              child: Icon(Icons.add),
             ),
           ),
         ],

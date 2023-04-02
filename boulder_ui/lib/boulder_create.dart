@@ -252,7 +252,6 @@ class _BoulderCreateState extends State<BoulderCreate> {
         ElevatedButton(
           onPressed: saveEnabled
               ? () async {
-                  //print('Save');
                   final res = await saveBoulder();
                   if (res) {
                     ScaffoldMessenger.of(context).showSnackBar(
