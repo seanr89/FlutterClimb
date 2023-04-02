@@ -1,4 +1,4 @@
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,10 +7,10 @@ import 'package:namer_app/models/Boulder.dart';
 import 'Services/storage.service.dart';
 
 class BoulderDetail extends StatelessWidget {
-  Boulder? currentBoulder;
-  BoulderDetail(Boulder boulder) {
-    currentBoulder = boulder;
-  }
+  Boulder currentBoulder;
+
+  // var todo;
+  BoulderDetail({super.key, required this.currentBoulder});
   Storage fileStorage = Storage();
 
   @override
@@ -70,8 +70,7 @@ class BoulderDetail extends StatelessWidget {
 
   Future<String> loadImage() async {
     //select the image url
-    String url = await fileStorage
-        .getDownloadURLFromRef(currentBoulder!.imgRef ?? "Orange_1.jpg");
+    String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
     print('url: $url');
     return url;
   }
