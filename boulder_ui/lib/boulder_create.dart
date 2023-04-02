@@ -40,12 +40,13 @@ class BoulderCreate extends StatefulWidget {
 }
 
 class _BoulderCreateState extends State<BoulderCreate> {
-  Boulder boulder = Boulder();
   XFile? image;
   String? imageUrl;
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
-  //TimeOfDay time = TimeOfDay.now();
+  TimeOfDay time = TimeOfDay.now();
+  Boulder boulder =
+      Boulder(name: "Test", active: true, imgRef: "", colour: "", grade: "");
 
   bool saveEnabled = false;
 

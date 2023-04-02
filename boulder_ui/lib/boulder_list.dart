@@ -39,8 +39,9 @@ class BoulderList extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BoulderDetail(Boulder.fromMap(
-                                document.data() as Map<dynamic, dynamic>))),
+                            builder: (context) => BoulderDetail(
+                                currentBoulder: Boulder.fromMap(
+                                    document.data() as Map<String, dynamic>))),
                       );
                     },
                   );
