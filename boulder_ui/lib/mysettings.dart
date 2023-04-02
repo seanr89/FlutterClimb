@@ -2,6 +2,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:namer_app/Services/storage.service.dart';
 
+import 'Screens/dialog/ImageDialog.dart';
+
 class MySettings extends StatelessWidget {
   var storage = Storage();
   @override
@@ -27,7 +29,13 @@ class MySettings extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (context, index) {
-                        return Text(list[index].fullPath);
+                        return ListTile(
+                            title: Center(child: Text(list[index].fullPath)),
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => ImageDialog());
+                            });
                       }),
                 ),
               );

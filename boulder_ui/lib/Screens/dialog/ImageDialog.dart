@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/Repositories/BoulderRepository.dart';
+import 'package:namer_app/Services/storage.service.dart';
 
 //https://stackoverflow.com/questions/68930109/flutter-get-image-from-firebase-storage-and-show-it-in-app
 
-class ExampleDialog extends StatelessWidget {
+class ImageDialog extends StatelessWidget {
+  Storage fileStorage = Storage();
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -39,24 +42,9 @@ class ExampleDialog extends StatelessWidget {
   }
 
   Future<String> loadImage() async {
-    //current user id
-    // final _userID = FirebaseAuth.instance.currentUser!.uid;
-
-    // //collect the image name
-    // DocumentSnapshot variable = await FirebaseFirestore.instance
-    //     .collection('data_user')
-    //     .doc('user')
-    //     .collection('personal_data')
-    //     .doc(_userID)
-    //     .get();
-
-    //a list of images names (i need only one)
-    //var _file_name = variable['path_profile_image'];
-
     //select the image url
-    //TODO
-    String url = "Hello";
-    print('url: ' + url);
+    String url = await fileStorage.getDownloadURLFromRef('Orange_2.png');
+    print('url: $url');
     return url;
   }
 }
