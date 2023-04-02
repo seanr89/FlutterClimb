@@ -45,7 +45,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
   String? imageUrl;
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
-  TimeOfDay time = TimeOfDay.now();
+  //TimeOfDay time = TimeOfDay.now();
 
   bool saveEnabled = false;
 
@@ -87,7 +87,6 @@ class _BoulderCreateState extends State<BoulderCreate> {
 
   /// ensure the boulder model is properly updated
   Boulder? createBoulderFromInputs(Reference ref) {
-    //print("createBoulderFromInputs");
     boulder.imgRef = ref.fullPath;
     boulder.activeDate = startDate;
     boulder.colour = colourValue;
@@ -117,9 +116,8 @@ class _BoulderCreateState extends State<BoulderCreate> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            //Text("Select a Colour:"),
             DropdownButton<String>(
-                hint: Text('Select a colour'),
+                hint: Text('Select a Colour'),
                 value: colourValue,
                 //isExpanded: true,
                 icon: const Icon(Icons.arrow_downward),
@@ -145,7 +143,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
           children: [
             //Text("Select a Colour:"),
             DropdownButton<String>(
-                hint: Text('Select a grade'),
+                hint: Text('Select a Grade'),
                 value: gradeValue,
                 //isExpanded: true,
                 icon: const Icon(Icons.arrow_downward),
@@ -262,12 +260,14 @@ class _BoulderCreateState extends State<BoulderCreate> {
     ));
   }
 
+  // Date Picker Initializer
   Future<DateTime?> pickDate(date) => showDatePicker(
       context: context,
       initialDate: date,
       firstDate: DateTime(2022),
       lastDate: DateTime(2100));
 
+  // Time Picker Initializer
   Future<TimeOfDay?> pickTime(date) => showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: date.hour, minute: date.minute));

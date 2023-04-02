@@ -1,21 +1,17 @@
 # boulder_ui
 
-A new Flutter project.
+A new Flutter project designed to support personal bouldering monitoring
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Folder
+- Screens : plan to move the screens into separate folders for structure
+- Services
 
--   [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
--   [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-## Links
+## Dev Links
 
 -   CodeLab: [Link](https://codelabs.developers.google.com/codelabs/flutter-codelab-first)
 -   url_launcher: [Link](https://blog.logrocket.com/launching-urls-flutter-url_launcher/)
@@ -26,7 +22,7 @@ samples, guidance on mobile development, and a full API reference.
 -   Auth: [Link](https://blog.codemagic.io/firebase-authentication-google-sign-in-using-flutter/)
 -   dialog: [Link](https://blog.logrocket.com/creating-dialogs-flutter/)
 
-## Links TWO
+## Dev Links TWO
 -   Image Load: [Link](https://stackoverflow.com/questions/68930109/flutter-get-image-from-firebase-storage-and-show-it-in-app)
 -   State Control: [Link](https://blog.logrocket.com/ultimate-guide-getx-state-management-flutter/)
 -   Get Package: [Link](https://pub.dev/packages/get)
