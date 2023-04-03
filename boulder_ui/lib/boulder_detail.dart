@@ -1,7 +1,6 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:namer_app/models/Boulder.dart';
 
 import 'Services/storage.service.dart';

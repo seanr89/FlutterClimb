@@ -8,7 +8,7 @@ This project is a starting point for a Flutter application.
 
 ## Folder
 - Screens : plan to move the screens into separate folders for structure
-- Services
+- Services : baseline ideas for cloud firestore and storage services
 
 
 ## Dev Links

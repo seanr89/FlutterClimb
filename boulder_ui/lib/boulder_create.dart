@@ -66,7 +66,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
 
   /// Start the saving process
   Future<bool> saveBoulder() async {
-    print('saveBoulder');
+    //print('saveBoulder');
     var ref = uploadImage();
     createBoulderFromInputs(ref);
     return await boulderRepo.createBoulder(boulder);
@@ -249,9 +249,12 @@ class _BoulderCreateState extends State<BoulderCreate> {
           onPressed: saveEnabled
               ? () async {
                   final res = await saveBoulder();
-                  if (res) {
+                  if (res && context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Record Saved')));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Save Failed')));
                   }
                 }
               : null,
