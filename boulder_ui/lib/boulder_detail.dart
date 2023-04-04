@@ -90,6 +90,17 @@ class BoulderSessionForm extends StatelessWidget {
               child: Icon(Icons.save),
             ),
           ),
+          SizedBox(height: 10),
+          Align(
+            alignment: Alignment.bottomLeft,
+            // add your floating action button
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Sessions/Stats");
+              },
+              child: Icon(Icons.settings),
+            ),
+          ),
         ],
       ),
     );
