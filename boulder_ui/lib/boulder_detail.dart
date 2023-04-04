@@ -61,6 +61,17 @@ class BoulderDetail extends StatelessWidget {
     //print('url: $url');
     return url;
   }
+
+  Future<Image> loadImageWithURL() async {
+    //select the image url
+    String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
+    //print('url: $url');
+    return Image.network(
+      url,
+      width: 350,
+      height: 450,
+    );
+  }
 }
 
 class BoulderSessionForm extends StatelessWidget {
@@ -82,32 +93,35 @@ class BoulderSessionForm extends StatelessWidget {
             onChanged: (newValue) {},
           ),
           SizedBox(height: 10),
-          Align(
-            alignment: Alignment.bottomRight,
-            // add your floating action button
-            child: FloatingActionButton(
-              onPressed: () {
-                print("Saving");
-              },
-              child: Icon(Icons.save),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              // add your floating action button
+              child: FloatingActionButton(
+                onPressed: () {
+                  print("Saving");
+                },
+                child: Icon(Icons.save),
+              ),
             ),
           ),
           SizedBox(height: 10),
-          Align(
-            alignment: Alignment.bottomLeft,
-            // add your floating action button
-            child: FloatingActionButton(
-              onPressed: () {
-                print("Sessions/Stats");
-                // BoulderDetail() should be name of the screen to nav too
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SessionList()),
-                );
-              },
-              child: Icon(Icons.settings),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomLeft,
+          //   // add your floating action button
+          //   child: FloatingActionButton(
+          //     onPressed: () {
+          //       print("Sessions/Stats");
+          //       // BoulderDetail() should be name of the screen to nav too
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => SessionList()),
+          //       );
+          //     },
+          //     child: Icon(Icons.settings),
+          //   ),
+          // ),
         ],
       ),
     );
