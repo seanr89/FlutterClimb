@@ -7,32 +7,34 @@ import 'package:image_picker/image_picker.dart';
 import 'package:namer_app/Repositories/BoulderRepository.dart';
 import 'package:namer_app/models/Boulder.dart';
 
-class BoulderCreate extends StatefulWidget {
-  static const List<String> gradeColours = <String>[
-    'Orange',
-    'Blue',
-    'White',
-    'Green',
-    'Yellow',
-    'Purple',
-    'Red',
-    'Black',
-    'Pink'
-  ];
+import 'assets/constants.dart';
 
-  static const List<String> grades = <String>[
-    '3',
-    '4-',
-    '4',
-    '4+',
-    '5-',
-    '5',
-    '5+',
-    '6A',
-    '6A+',
-    '6B',
-    '6B+',
-  ];
+class BoulderCreate extends StatefulWidget {
+  // static const List<String> gradeColours = <String>[
+  //   'Orange',
+  //   'Blue',
+  //   'White',
+  //   'Green',
+  //   'Yellow',
+  //   'Purple',
+  //   'Red',
+  //   'Black',
+  //   'Pink'
+  // ];
+
+  // static const List<String> grades = <String>[
+  //   '3',
+  //   '4-',
+  //   '4',
+  //   '4+',
+  //   '5-',
+  //   '5',
+  //   '5+',
+  //   '6A',
+  //   '6A+',
+  //   '6B',
+  //   '6B+',
+  // ];
   //https://www.mountainproject.com/international-climbing-grades
 
   @override
@@ -95,8 +97,8 @@ class _BoulderCreateState extends State<BoulderCreate> {
     return boulder;
   }
 
-  String colourValue = BoulderCreate.gradeColours.first;
-  String gradeValue = BoulderCreate.grades.first;
+  String colourValue = Constants.gradeColours.first;
+  String gradeValue = Constants.grades.first;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +131,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 onChanged: (String? value) {
                   colourValue = value!;
                 },
-                items: BoulderCreate.gradeColours
+                items: Constants.gradeColours
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -155,7 +157,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 onChanged: (String? value) {
                   gradeValue = value!;
                 },
-                items: BoulderCreate.grades
+                items: Constants.grades
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

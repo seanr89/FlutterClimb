@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 class Constants {
   static const List<String> gradeColours = <String>[
     'Orange',
@@ -9,6 +13,18 @@ class Constants {
     'Red',
     'Black',
     'Pink'
+  ];
+
+  static const List<Map<String, Object?>> availableColors = [
+    {'Orange': Colors.orange},
+    {'Blue': Colors.blue},
+    {'White': Colors.blue},
+    {'Green': Colors.blue},
+    {'Yellow': Colors.blue},
+    {'Purple': Colors.blue},
+    {'Red': Colors.blue},
+    {'Black': Colors.blue},
+    {'Pink': Colors.blue}
   ];
 
   static const List<String> grades = <String>[

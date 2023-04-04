@@ -54,10 +54,11 @@ class BoulderDetail extends StatelessWidget {
     );
   }
 
+  //Load Image via querying storage URL
   Future<String> loadImage() async {
     //select the image url
     String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
-    print('url: $url');
+    //print('url: $url');
     return url;
   }
 }
@@ -120,8 +121,6 @@ class BoulderSessionForm extends StatelessWidget {
         SizedBox(height: 10),
         _buildDetailRow(
             sessionBoulder?.colour ?? "N/A", Icons.colorize, 'Colour: '),
-        // _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-        // _buildButtonColumn(color, Icons.share, 'SHARE'),
       ],
     ),
   );

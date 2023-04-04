@@ -13,9 +13,6 @@ class BoulderList extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // BigCard(pair: pair),
-          // Text('Boulder List!'),
-          // SizedBox(height: 10),
           StreamBuilder(
             stream:
                 FirebaseFirestore.instance.collection('Boulders').snapshots(),
@@ -51,7 +48,7 @@ class BoulderList extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Align(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.bottomRight,
             // add your floating action button
             child: FloatingActionButton(
               onPressed: () {
