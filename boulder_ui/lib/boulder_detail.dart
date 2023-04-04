@@ -1,6 +1,7 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/models/Boulder.dart';
 
 import 'Services/storage.service.dart';
@@ -97,6 +98,11 @@ class BoulderSessionForm extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: () {
                 print("Sessions/Stats");
+                // BoulderDetail() should be name of the screen to nav too
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SessionList()),
+                );
               },
               child: Icon(Icons.settings),
             ),
