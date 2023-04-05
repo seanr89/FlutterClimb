@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-import '../firebase_options.dart';
+import '../../firebase_options.dart';
 
 class Authentication {
   static SnackBar customSnackBar({required String content}) {

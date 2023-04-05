@@ -7,7 +7,7 @@ class ExampleDialog extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.blue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-      child: Container(
+      child: SizedBox(
         height: 350,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

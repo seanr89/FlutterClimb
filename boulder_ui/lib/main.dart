@@ -1,7 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:namer_app/Screens/dialog/ExampleDialog.dart';
-import 'package:namer_app/Screens/signinscreen.dart';
+import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/boulder_list.dart';
 import 'package:namer_app/locationspage.dart';
 import 'package:namer_app/mysettings.dart';

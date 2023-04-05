@@ -1,6 +1,7 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/models/Boulder.dart';
 
@@ -22,23 +23,18 @@ class BoulderDetail extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: FutureBuilder<String>(
-                future: loadImage(),
-                builder: (BuildContext context, AsyncSnapshot<String> image) {
+              child: FutureBuilder<Image>(
+                future: loadImageWithURL(),
+                builder: (BuildContext context, AsyncSnapshot<Image> image) {
                   if (image.hasData) {
                     return InteractiveViewer(
-                      panEnabled: true,
-                      scaleEnabled: true,
-                      //constrained: false,
-                      //boundaryMargin: EdgeInsets.all(10),
-                      minScale: 1,
-                      maxScale: 2,
-                      child: Image.network(
-                        image.data.toString(),
-                        width: 350,
-                        height: 450,
-                      ),
-                    );
+                        panEnabled: true,
+                        scaleEnabled: true,
+                        //constrained: false,
+                        //boundaryMargin: EdgeInsets.all(10),
+                        minScale: 1,
+                        maxScale: 2.5,
+                        child: image.data as Image);
                   } else {
                     return CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
@@ -55,12 +51,12 @@ class BoulderDetail extends StatelessWidget {
   }
 
   //Load Image via querying storage URL
-  Future<String> loadImage() async {
-    //select the image url
-    String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
-    //print('url: $url');
-    return url;
-  }
+  // Future<String> loadImage() async {
+  //   //select the image url
+  //   String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
+  //   //print('url: $url');
+  //   return url;
+  // }
 
   Future<Image> loadImageWithURL() async {
     //select the image url
@@ -70,6 +66,29 @@ class BoulderDetail extends StatelessWidget {
       url,
       width: 350,
       height: 450,
+      frameBuilder: (BuildContext context, Widget child, int? frame,
+          bool? wasSynchronouslyLoaded) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: child,
+        );
+      },
+      loadingBuilder: (BuildContext context, Widget child,
+          ImageChunkEvent? loadingProgress) {
+        if (loadingProgress == null) {
+          return child;
+        }
+        return SizedBox(
+          height: 200.0,
+          width: 200.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(
+                strokeWidth: 8,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+          ),
+        );
+      },
     );
   }
 }
@@ -91,6 +110,18 @@ class BoulderSessionForm extends StatelessWidget {
             title: Text("Completed"), //    <-- label
             value: false,
             onChanged: (newValue) {},
+          ),
+          SizedBox(height: 10),
+          TextField(
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ],
+            decoration: InputDecoration(
+                border: UnderlineInputBorder(), labelText: "Enter Attempts"),
+            onChanged: (text) {
+              //boulder.name = text;
+            },
           ),
           SizedBox(height: 10),
           Padding(

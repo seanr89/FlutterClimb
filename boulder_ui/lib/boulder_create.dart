@@ -10,31 +10,6 @@ import 'package:namer_app/models/Boulder.dart';
 import 'assets/constants.dart';
 
 class BoulderCreate extends StatefulWidget {
-  // static const List<String> gradeColours = <String>[
-  //   'Orange',
-  //   'Blue',
-  //   'White',
-  //   'Green',
-  //   'Yellow',
-  //   'Purple',
-  //   'Red',
-  //   'Black',
-  //   'Pink'
-  // ];
-
-  // static const List<String> grades = <String>[
-  //   '3',
-  //   '4-',
-  //   '4',
-  //   '4+',
-  //   '5-',
-  //   '5',
-  //   '5+',
-  //   '6A',
-  //   '6A+',
-  //   '6B',
-  //   '6B+',
-  // ];
   //https://www.mountainproject.com/international-climbing-grades
 
   @override
