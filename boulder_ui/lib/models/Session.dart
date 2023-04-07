@@ -1,7 +1,15 @@
 class Session {
   String? user;
-  DateTime? date;
+  DateTime? startDate;
+  DateTime? finishDate;
 
   //default Constructor
-  Session({user, date});
+  Session({user, startDate, finishDate});
+
+  toJson() {
+    // return {
+    //   "name": name,
+    //   "colour": colour,
+    // };
+  }
 }

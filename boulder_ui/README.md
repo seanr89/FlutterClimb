@@ -7,9 +7,9 @@ A new Flutter project designed to support personal bouldering monitoring
 This project is a starting point for a Flutter application.
 
 ## Folder
-- Screens : plan to move the screens into separate folders for structure
-- Services : baseline ideas for cloud firestore and storage services
 
+-   Screens : plan to move the screens into separate folders for structure
+-   Services : baseline ideas for cloud firestore and storage services
 
 ## Dev Links
 
@@ -23,6 +23,13 @@ This project is a starting point for a Flutter application.
 -   dialog: [Link](https://blog.logrocket.com/creating-dialogs-flutter/)
 
 ## Dev Links TWO
+
 -   Image Load: [Link](https://stackoverflow.com/questions/68930109/flutter-get-image-from-firebase-storage-and-show-it-in-app)
 -   State Control: [Link](https://blog.logrocket.com/ultimate-guide-getx-state-management-flutter/)
 -   Get Package: [Link](https://pub.dev/packages/get)
+
+## Auth
+
+-   Auth: [Link](https://blog.codemagic.io/firebase-authentication-google-sign-in-using-flutter/)
+-   another: [](https://blog.logrocket.com/implementing-firebase-authentication-in-a-flutter-app/)
+-   another: [](https://firebase.flutter.dev/docs/auth/usage/)

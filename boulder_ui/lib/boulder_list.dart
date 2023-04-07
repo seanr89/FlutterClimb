@@ -20,7 +20,6 @@ class BoulderList extends StatelessWidget {
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) return Text('Loading...');
               return ListView(
-                //itemExtent: 100.0,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: snapshot.data!.docs.mapIndexed((index, document) {
