@@ -50,14 +50,6 @@ class BoulderDetail extends StatelessWidget {
     );
   }
 
-  //Load Image via querying storage URL
-  // Future<String> loadImage() async {
-  //   //select the image url
-  //   String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
-  //   //print('url: $url');
-  //   return url;
-  // }
-
   Future<Image> loadImageWithURL() async {
     //select the image url
     String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
@@ -138,36 +130,19 @@ class BoulderSessionForm extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          // Align(
-          //   alignment: Alignment.bottomLeft,
-          //   // add your floating action button
-          //   child: FloatingActionButton(
-          //     onPressed: () {
-          //       print("Sessions/Stats");
-          //       // BoulderDetail() should be name of the screen to nav too
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => SessionList()),
-          //       );
-          //     },
-          //     child: Icon(Icons.settings),
-          //   ),
-          // ),
         ],
       ),
     );
   }
 
-  Widget boulderSection = Container(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildDetailRow(sessionBoulder?.grade ?? "N/A", Icons.grade, 'Grade: '),
-        SizedBox(height: 10),
-        _buildDetailRow(
-            sessionBoulder?.colour ?? "N/A", Icons.colorize, 'Colour: '),
-      ],
-    ),
+  Widget boulderSection = Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      _buildDetailRow(sessionBoulder?.grade ?? "N/A", Icons.grade, 'Grade: '),
+      SizedBox(height: 10),
+      _buildDetailRow(
+          sessionBoulder?.colour ?? "N/A", Icons.colorize, 'Colour: '),
+    ],
   );
 }
 

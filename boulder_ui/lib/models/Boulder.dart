@@ -21,7 +21,7 @@ class Boulder {
       required this.grade});
 
   factory Boulder.fromMap(Map map) {
-    print(map);
+    //print(map);
     return Boulder(
         name: map['name'],
         active: map['active'],

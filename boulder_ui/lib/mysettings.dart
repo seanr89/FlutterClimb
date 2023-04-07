@@ -13,6 +13,8 @@ class MySettings extends StatelessWidget {
       SizedBox(height: 20),
       Text('My Settings'),
       SizedBox(height: 20),
+      Text('Show User Name here!'),
+      SizedBox(height: 20),
       FutureBuilder<ListResult>(
           future: storage.listAllFiles(),
           builder: (context, future) {

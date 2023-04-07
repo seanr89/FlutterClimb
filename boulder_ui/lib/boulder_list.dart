@@ -20,27 +20,34 @@ class BoulderList extends StatelessWidget {
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) return Text('Loading...');
               return ListView(
+                //itemExtent: 100.0,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: snapshot.data!.docs.mapIndexed((index, document) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Text((index + 1).toString()),
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      tileColor: Colors.orange,
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        child: Text((index + 1).toString()),
+                      ),
+                      title: Center(child: Text(document['name'])),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                      contentPadding: EdgeInsets.all(10.0),
+                      onTap: () {
+                        // BoulderDetail() should be name of the screen to nav too
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BoulderDetail(
+                                  currentBoulder: Boulder.fromMap(document
+                                      .data() as Map<String, dynamic>))),
+                        );
+                      },
                     ),
-                    title: Center(child: Text(document['name'])),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    contentPadding: EdgeInsets.all(10.0),
-                    onTap: () {
-                      // BoulderDetail() should be name of the screen to nav too
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BoulderDetail(
-                                currentBoulder: Boulder.fromMap(
-                                    document.data() as Map<String, dynamic>))),
-                      );
-                    },
                   );
                 }).toList(),
               );
