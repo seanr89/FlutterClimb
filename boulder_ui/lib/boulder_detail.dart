@@ -50,10 +50,10 @@ class BoulderDetail extends StatelessWidget {
     );
   }
 
+  // async - Supports image URL querying and return of Image object
   Future<Image> loadImageWithURL() async {
     //select the image url
     String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
-    //print('url: $url');
     return Image.network(
       url,
       width: 350,
