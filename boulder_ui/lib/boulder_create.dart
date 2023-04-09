@@ -72,6 +72,11 @@ class _BoulderCreateState extends State<BoulderCreate> {
     return boulder;
   }
 
+  void showSnackBar(BuildContext context) {
+    final snack = SnackBar(content: Text("It works"));
+    ScaffoldMessenger.of(context).showSnackBar(snack);
+  }
+
   String colourValue = Constants.gradeColours.first;
   String gradeValue = Constants.grades.first;
 
@@ -226,13 +231,14 @@ class _BoulderCreateState extends State<BoulderCreate> {
           onPressed: saveEnabled
               ? () async {
                   final res = await saveBoulder();
-                  if (res && context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Record Saved')));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Save Failed')));
-                  }
+                  // if (res) {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(content: Text('Record Saved')));
+                  // } else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(content: Text('Save Failed')));
+                  // }
+                  if (mounted) showSnackBar(context);
                 }
               : null,
           child: Text("Save"),
