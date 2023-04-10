@@ -95,7 +95,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
             boulder.name = text;
           },
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -120,7 +120,7 @@ class _BoulderCreateState extends State<BoulderCreate> {
                 }).toList()),
           ],
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

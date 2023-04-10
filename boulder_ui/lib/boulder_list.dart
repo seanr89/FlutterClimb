@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/boulder_create.dart';
 import 'package:namer_app/boulder_detail.dart';
 
+import 'Services/Firestore.Boulders.dart';
 import 'models/Boulder.dart';
 
 class BoulderList extends StatelessWidget {
@@ -13,17 +14,15 @@ class BoulderList extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          StreamBuilder(
-            stream:
-                FirebaseFirestore.instance.collection('Boulders').snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          FutureBuilder<List<Boulder>>(
+            future: FirestoreBoulders.getAllEntries("Boulders"),
+            builder: (context, AsyncSnapshot<List<Boulder>> snapshot) {
               if (!snapshot.hasData) return Text('Loading...');
               return Expanded(
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  children: snapshot.data!.docs.mapIndexed((index, document) {
+                  children: snapshot.data!.mapIndexed((index, boulder) {
                     return Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: ListTile(
@@ -34,7 +33,7 @@ class BoulderList extends StatelessWidget {
                           backgroundColor: Colors.blue,
                           child: Text((index + 1).toString()),
                         ),
-                        title: Center(child: Text(document['name'])),
+                        title: Center(child: Text(boulder!.name ?? "Boulder")),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         contentPadding: EdgeInsets.all(10.0),
                         onTap: () {
@@ -42,9 +41,8 @@ class BoulderList extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BoulderDetail(
-                                    currentBoulder: Boulder.fromMap(document
-                                        .data() as Map<String, dynamic>))),
+                                builder: (context) =>
+                                    BoulderDetail(currentBoulder: boulder)),
                           );
                         },
                       ),

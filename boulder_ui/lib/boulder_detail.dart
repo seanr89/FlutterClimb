@@ -10,7 +10,6 @@ import 'Services/storage.service.dart';
 class BoulderDetail extends StatelessWidget {
   Boulder currentBoulder;
 
-  // var todo;
   BoulderDetail({super.key, required this.currentBoulder});
   Storage fileStorage = Storage();
 
@@ -113,6 +112,7 @@ class BoulderSessionForm extends StatelessWidget {
                 border: UnderlineInputBorder(), labelText: "Enter Attempts"),
             onChanged: (text) {
               //boulder.name = text;
+              //TODO: Updated processes for attempt record
             },
           ),
           SizedBox(height: 10),
@@ -124,6 +124,8 @@ class BoulderSessionForm extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () {
                   print("Saving");
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Record Saved')));
                 },
                 child: Icon(Icons.save),
               ),

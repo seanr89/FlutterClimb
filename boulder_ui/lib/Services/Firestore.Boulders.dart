@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/Boulder.dart';
 
-class FirestoreLocations {
+class FirestoreBoulders {
   // just a simple get
   static Future<List<Boulder>> getAllEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
