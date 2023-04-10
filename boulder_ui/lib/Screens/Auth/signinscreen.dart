@@ -33,10 +33,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       flex: 1,
                       child: Image.asset(
                         'images/firebase_logo.png',
-                        height: 160,
+                        height: 140,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 30),
                     Text(
                       'FlutterFire',
                       style: TextStyle(
@@ -68,6 +68,52 @@ class _SignInScreenState extends State<SignInScreen> {
                       // ),
                       );
                 },
+              ),
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ),
+                onPressed: () async {
+                  // setState(() {
+                  //   _isSigningIn = true;
+                  // });
+
+                  // // TODO: Add a method call to the Google Sign-In authentication
+
+                  // setState(() {
+                  //   _isSigningIn = false;
+                  // });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.login),
+                      // Image(
+                      //   image: AssetImage("images/google_logo.png"),
+                      //   height: 35.0,
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
