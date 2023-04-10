@@ -11,6 +11,7 @@ class _SignUpScreenState extends State<RegisterPage> {
     return Material(
         child: Padding(
       padding: const EdgeInsets.all(12.0),
+      child: Text("Register"),
     ));
   }
 }

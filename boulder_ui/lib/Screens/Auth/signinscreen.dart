@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/Screens/Auth/registerpage.dart';
 
 import 'authentication.dart';
 import 'googlesignin.dart';
@@ -36,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 140,
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
                     Text(
                       'FlutterFire',
                       style: TextStyle(
@@ -79,15 +80,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 onPressed: () async {
-                  // setState(() {
-                  //   _isSigningIn = true;
-                  // });
-
-                  // // TODO: Add a method call to the Google Sign-In authentication
-
-                  // setState(() {
-                  //   _isSigningIn = false;
-                  // });
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RegisterPage(),
+                    ),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
