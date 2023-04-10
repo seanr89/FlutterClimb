@@ -16,34 +16,36 @@ class BoulderDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: FutureBuilder<Image>(
-                future: loadImageWithURL(),
-                builder: (BuildContext context, AsyncSnapshot<Image> image) {
-                  if (image.hasData) {
-                    return InteractiveViewer(
-                        panEnabled: true,
-                        scaleEnabled: true,
-                        //constrained: false,
-                        //boundaryMargin: EdgeInsets.all(10),
-                        minScale: 1,
-                        maxScale: 2.5,
-                        child: image.data as Image);
-                  } else {
-                    return CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white)); // placeholder
-                  }
-                },
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: FutureBuilder<Image>(
+                  future: loadImageWithURL(),
+                  builder: (BuildContext context, AsyncSnapshot<Image> image) {
+                    if (image.hasData) {
+                      return InteractiveViewer(
+                          panEnabled: true,
+                          scaleEnabled: true,
+                          //constrained: false,
+                          //boundaryMargin: EdgeInsets.all(10),
+                          minScale: 1,
+                          maxScale: 2.5,
+                          child: image.data as Image);
+                    } else {
+                      return CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white)); // placeholder
+                    }
+                  },
+                ),
               ),
-            ),
-            BoulderSessionForm(currentBoulder)
-          ],
+              BoulderSessionForm(currentBoulder)
+            ],
+          ),
         ),
       ),
     );
@@ -91,49 +93,46 @@ class BoulderSessionForm extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      child: Column(
-        children: [
-          boulderSection,
-          SizedBox(height: 10),
-          CheckboxListTile(
-            title: Text("Completed"), //    <-- label
-            value: false,
-            onChanged: (newValue) {},
-          ),
-          SizedBox(height: 10),
-          TextField(
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(), labelText: "Enter Attempts"),
-            onChanged: (text) {
-              //boulder.name = text;
-              //TODO: Updated processes for attempt record
-            },
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              // add your floating action button
-              child: FloatingActionButton(
-                onPressed: () {
-                  print("Saving");
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Record Saved')));
-                },
-                child: Icon(Icons.save),
-              ),
+    return Column(
+      children: [
+        boulderSection,
+        SizedBox(height: 10),
+        CheckboxListTile(
+          title: Text("Completed"), //    <-- label
+          value: false,
+          onChanged: (newValue) {},
+        ),
+        SizedBox(height: 10),
+        TextField(
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
+          decoration: InputDecoration(
+              border: UnderlineInputBorder(), labelText: "Enter Attempts"),
+          onChanged: (text) {
+            //boulder.name = text;
+            //TODO: Updated processes for attempt record
+          },
+        ),
+        SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            // add your floating action button
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Saving");
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Record Saved')));
+              },
+              child: Icon(Icons.save),
             ),
           ),
-          SizedBox(height: 10),
-        ],
-      ),
+        ),
+        SizedBox(height: 10),
+      ],
     );
   }
 

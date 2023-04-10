@@ -83,167 +83,170 @@ class _BoulderCreateState extends State<BoulderCreate> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Center(
-          child: Column(children: [
-        SizedBox(height: 35),
-        TextField(
-          decoration: InputDecoration(
-              border: UnderlineInputBorder(), labelText: "Enter a name"),
-          onChanged: (text) {
-            boulder.name = text;
-          },
-        ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            DropdownButton<String>(
-                hint: Text('Select a Colour'),
-                value: colourValue,
-                //isExpanded: true,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                underline: Container(
-                  height: 2,
+        child: Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Center(
+            child: Column(children: [
+          SizedBox(height: 35),
+          TextField(
+            decoration: InputDecoration(
+                border: UnderlineInputBorder(), labelText: "Enter a name"),
+            onChanged: (text) {
+              boulder.name = text;
+            },
+          ),
+          SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              DropdownButton<String>(
+                  hint: Text('Select a Colour'),
+                  value: colourValue,
+                  //isExpanded: true,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    colourValue = value!;
+                  },
+                  items: Constants.gradeColours
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList()),
+            ],
+          ),
+          SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              //Text("Select a Colour:"),
+              DropdownButton<String>(
+                  hint: Text('Select a Grade'),
+                  value: gradeValue,
+                  //isExpanded: true,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    gradeValue = value!;
+                  },
+                  items: Constants.grades
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList()),
+            ],
+          ),
+          SizedBox(height: 5),
+          Container(
+              margin: EdgeInsets.all(15),
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
                 ),
-                onChanged: (String? value) {
-                  colourValue = value!;
-                },
-                items: Constants.gradeColours
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList()),
-          ],
-        ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            //Text("Select a Colour:"),
-            DropdownButton<String>(
-                hint: Text('Select a Grade'),
-                value: gradeValue,
-                //isExpanded: true,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                underline: Container(
-                  height: 2,
-                ),
-                onChanged: (String? value) {
-                  gradeValue = value!;
-                },
-                items: Constants.grades
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList()),
-          ],
-        ),
-        SizedBox(height: 5),
-        Container(
-            margin: EdgeInsets.all(15),
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(15),
+                border: Border.all(color: Colors.white),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    offset: Offset(2, 2),
+                    spreadRadius: 2,
+                    blurRadius: 1,
+                  ),
+                ],
               ),
-              border: Border.all(color: Colors.white),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(2, 2),
-                  spreadRadius: 2,
-                  blurRadius: 1,
-                ),
-              ],
-            ),
-            child: (imageUrl != null)
-                ? Image.file(
-                    File(image!.path),
-                    width: double.infinity,
-                    height: 250,
-                    fit: BoxFit.cover,
-                  )
-                : Image.network('https://i.imgur.com/sUFH1Aq.png')),
-        ElevatedButton.icon(
-          onPressed: () {
-            getImage(ImageSource.gallery);
-          },
-          icon: Icon(Icons.add_a_photo),
-          label: Text('Photo'),
-        ),
-        SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            child: Text(
-                'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
-            onPressed: () async {
-              final date = await pickDate(startDate);
-              if (date != null) {
-                setState(() {
-                  startDate = date;
-                });
-              }
-              return;
+              child: (imageUrl != null)
+                  ? Image.file(
+                      File(image!.path),
+                      width: double.infinity,
+                      height: 250,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.network('https://i.imgur.com/sUFH1Aq.png')),
+          ElevatedButton.icon(
+            onPressed: () {
+              getImage(ImageSource.gallery);
             },
+            icon: Icon(Icons.add_a_photo),
+            label: Text('Photo'),
           ),
-        ),
-        // SizedBox(height: 5),
-        // ElevatedButton(
-        //   child: Text('Time: ${startDate.hour}:${startDate.minute}'),
-        //   onPressed: () async {
-        //     final t = await pickTime(startDate);
-        //     if (t != null) {
-        //       setState(() {
-        //         time = t;
-        //       });
-        //     }
-        //     return;
-        //   },
-        // ),
-        SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            child: Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
-            onPressed: () async {
-              final date = await pickDate(endDate);
-              if (date != null) {
-                setState(() {
-                  endDate = date;
-                });
-              }
-              return;
-            },
-          ),
-        ),
-        SizedBox(height: 5),
-        ElevatedButton(
-          onPressed: saveEnabled
-              ? () async {
-                  final res = await saveBoulder();
-                  // if (res) {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //       const SnackBar(content: Text('Record Saved')));
-                  // } else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //       const SnackBar(content: Text('Save Failed')));
-                  // }
-                  if (mounted) showSnackBar(context);
+          SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              child: Text(
+                  'Start: ${startDate.year}/${startDate.month}/${startDate.day}'),
+              onPressed: () async {
+                final date = await pickDate(startDate);
+                if (date != null) {
+                  setState(() {
+                    startDate = date;
+                  });
                 }
-              : null,
-          child: Text("Save"),
-        )
-      ])),
+                return;
+              },
+            ),
+          ),
+          // SizedBox(height: 5),
+          // ElevatedButton(
+          //   child: Text('Time: ${startDate.hour}:${startDate.minute}'),
+          //   onPressed: () async {
+          //     final t = await pickTime(startDate);
+          //     if (t != null) {
+          //       setState(() {
+          //         time = t;
+          //       });
+          //     }
+          //     return;
+          //   },
+          // ),
+          SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              child:
+                  Text('End: ${endDate.year}/${endDate.month}/${endDate.day}'),
+              onPressed: () async {
+                final date = await pickDate(endDate);
+                if (date != null) {
+                  setState(() {
+                    endDate = date;
+                  });
+                }
+                return;
+              },
+            ),
+          ),
+          SizedBox(height: 5),
+          ElevatedButton(
+            onPressed: saveEnabled
+                ? () async {
+                    final res = await saveBoulder();
+                    // if (res) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //       const SnackBar(content: Text('Record Saved')));
+                    // } else {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //       const SnackBar(content: Text('Save Failed')));
+                    // }
+                    if (mounted) showSnackBar(context);
+                  }
+                : null,
+            child: Text("Save"),
+          )
+        ])),
+      ),
     ));
   }
 

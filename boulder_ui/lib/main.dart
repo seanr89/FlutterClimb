@@ -71,6 +71,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => SignInScreen()),
                 );
               },
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings),
+              tooltip: 'Settings',
+              onPressed: () {
+                // SignInScreen - Screen to nav too
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MySettings()),
+                );
+              },
             )
           ],
         ),
@@ -88,10 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.location_city),
               label: 'Locations',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.settings),
+            //   label: 'Settings',
+            // ),
           ],
           currentIndex: _selectedIndex, //New
           onTap: _onItemTapped, //New
