@@ -12,6 +12,8 @@ class LocationsPage extends StatelessWidget {
             builder: (context, AsyncSnapshot<List<Location>> snapshot) {
               if (snapshot.hasData) {
                 return ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
                   children: snapshot.data!.map((location) {
                     return ListTile(
                         title: Text(location.name ?? "Unknown"),

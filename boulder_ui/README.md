@@ -31,5 +31,5 @@ This project is a starting point for a Flutter application.
 ## Auth
 
 -   Auth: [Link](https://blog.codemagic.io/firebase-authentication-google-sign-in-using-flutter/)
--   another: [](https://blog.logrocket.com/implementing-firebase-authentication-in-a-flutter-app/)
--   another: [](https://firebase.flutter.dev/docs/auth/usage/)
+-   another: [Link](https://blog.logrocket.com/implementing-firebase-authentication-in-a-flutter-app/)
+-   another: [Link](https://firebase.flutter.dev/docs/auth/usage/)
