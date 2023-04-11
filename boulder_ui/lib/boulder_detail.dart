@@ -2,15 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/models/Boulder.dart';
-
 import 'Services/storage.service.dart';
 
-class BoulderDetail extends StatelessWidget {
+class BoulderDetail extends StatefulWidget {
   Boulder currentBoulder;
 
   BoulderDetail({super.key, required this.currentBoulder});
+
+  @override
+  State<BoulderDetail> createState() => _BoulderDetailState();
+}
+
+class _BoulderDetailState extends State<BoulderDetail> {
   Storage fileStorage = Storage();
 
   @override
@@ -43,7 +47,7 @@ class BoulderDetail extends StatelessWidget {
                   },
                 ),
               ),
-              BoulderSessionForm(currentBoulder)
+              BoulderSessionForm(widget.currentBoulder)
             ],
           ),
         ),
@@ -54,7 +58,8 @@ class BoulderDetail extends StatelessWidget {
   // async - Supports image URL querying and return of Image object
   Future<Image> loadImageWithURL() async {
     //select the image url
-    String url = await fileStorage.getDownloadURLFromRef(currentBoulder.imgRef);
+    String url =
+        await fileStorage.getDownloadURLFromRef(widget.currentBoulder.imgRef);
     return Image.network(
       url,
       width: 350,
