@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.login),
               tooltip: 'Sign-in',
               onPressed: () {
-                // SignInScreen - Screen to nav too
+                // SignInScreen Nav
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignInScreen()),
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.settings),
               tooltip: 'Settings',
               onPressed: () {
-                // SignInScreen - Screen to nav too
+                // SettingsScreen Nav
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MySettings()),

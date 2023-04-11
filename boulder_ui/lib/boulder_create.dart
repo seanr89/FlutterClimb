@@ -233,14 +233,17 @@ class _BoulderCreateState extends State<BoulderCreate> {
             onPressed: saveEnabled
                 ? () async {
                     final res = await saveBoulder();
-                    // if (res) {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //       const SnackBar(content: Text('Record Saved')));
-                    // } else {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //       const SnackBar(content: Text('Save Failed')));
-                    // }
-                    if (mounted) showSnackBar(context);
+                    if (res) {
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Record Saved')));
+                      }
+                    } else {
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Save Failed')));
+                      }
+                    }
                   }
                 : null,
             child: Text("Save"),

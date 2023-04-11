@@ -165,25 +165,3 @@ Row _buildDetailRow(String content, IconData icon, String label) {
         Text(content, style: TextStyle(fontSize: 18))
       ]);
 }
-
-/// Base button selector button event
-// Column _buildButtonColumn(Color color, IconData icon, String label) {
-//   return Column(
-//     mainAxisSize: MainAxisSize.min,
-//     mainAxisAlignment: MainAxisAlignment.center,
-//     children: [
-//       Icon(icon, color: color),
-//       Container(
-//         margin: const EdgeInsets.only(top: 4),
-//         child: Text(
-//           label,
-//           style: TextStyle(
-//             fontSize: 12,
-//             fontWeight: FontWeight.w300,
-//             color: color,
-//           ),
-//         ),
-//       ),
-//     ],
-//   );
-// }
