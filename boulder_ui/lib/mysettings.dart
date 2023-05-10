@@ -14,35 +14,6 @@ class MySettings extends StatelessWidget {
         Text('My Settings'),
         SizedBox(height: 20),
         Text('Show User Name here!'),
-        // SizedBox(height: 20),
-        // FutureBuilder<ListResult>(
-        //     future: storage.listAllFiles(),
-        //     builder: (context, future) {
-        //       if (!future.hasData) {
-        //         return Text(
-        //             'Waiting'); // Display empty container if the list is empty
-        //       } else {
-        //         List<Reference> list = future.data!.items;
-        //         return Padding(
-        //           padding: const EdgeInsets.all(8.0),
-        //           child: Center(
-        //             child: ListView.builder(
-        //                 scrollDirection: Axis.vertical,
-        //                 shrinkWrap: true,
-        //                 itemCount: list.length,
-        //                 itemBuilder: (context, index) {
-        //                   return ListTile(
-        //                       title: Center(child: Text(list[index].fullPath)),
-        //                       onTap: () {
-        //                         showDialog(
-        //                             context: context,
-        //                             builder: (_) => ImageDialog());
-        //                       });
-        //                 }),
-        //           ),
-        //         );
-        //       }
-        //     }),
       ])),
     );
   }

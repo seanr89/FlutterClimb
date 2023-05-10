@@ -129,8 +129,8 @@ class BoulderSessionForm extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: () {
                 print("Saving");
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Record Saved')));
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('Record Saved')));
               },
               child: Icon(Icons.save),
             ),

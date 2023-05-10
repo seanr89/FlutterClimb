@@ -1,12 +1,11 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:namer_app/Screens/dialog/ExampleDialog.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/boulder_list.dart';
-import 'package:namer_app/locationspage.dart';
+import 'package:namer_app/Screens/Defunct/locationspage.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'assets/utils.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -31,6 +30,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.blue, brightness: Brightness.dark)),
         themeMode: ThemeMode.dark,
+        scaffoldMessengerKey: Utils.messengerKey,
         home: MyHomePage(),
       ),
     );
@@ -99,10 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.location_city),
               label: 'Locations',
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.settings),
-            //   label: 'Settings',
-            // ),
           ],
           currentIndex: _selectedIndex, //New
           onTap: _onItemTapped, //New
