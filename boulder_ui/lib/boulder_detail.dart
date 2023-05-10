@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/models/Boulder.dart';
 import 'Services/storage.service.dart';
+import 'assets/utils.dart';
 
 class BoulderDetail extends StatefulWidget {
-  Boulder currentBoulder;
+  final Boulder currentBoulder;
 
   BoulderDetail({super.key, required this.currentBoulder});
 
@@ -15,7 +16,7 @@ class BoulderDetail extends StatefulWidget {
 }
 
 class _BoulderDetailState extends State<BoulderDetail> {
-  Storage fileStorage = Storage();
+  final Storage fileStorage = Storage();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _BoulderDetailState extends State<BoulderDetail> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: FutureBuilder<Image>(
                   future: loadImageWithURL(),
                   builder: (BuildContext context, AsyncSnapshot<Image> image) {
@@ -37,7 +38,7 @@ class _BoulderDetailState extends State<BoulderDetail> {
                           //constrained: false,
                           //boundaryMargin: EdgeInsets.all(10),
                           minScale: 1,
-                          maxScale: 2.5,
+                          maxScale: 2.7,
                           child: image.data as Image);
                     } else {
                       return CircularProgressIndicator(
@@ -62,8 +63,8 @@ class _BoulderDetailState extends State<BoulderDetail> {
         await fileStorage.getDownloadURLFromRef(widget.currentBoulder.imgRef);
     return Image.network(
       url,
-      width: 350,
-      height: 450,
+      width: 400,
+      height: 480,
       frameBuilder: (BuildContext context, Widget child, int? frame,
           bool? wasSynchronouslyLoaded) {
         return Padding(
@@ -78,7 +79,7 @@ class _BoulderDetailState extends State<BoulderDetail> {
         }
         return SizedBox(
           height: 200.0,
-          width: 200.0,
+          width: 210.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircularProgressIndicator(
@@ -98,46 +99,37 @@ class BoulderSessionForm extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        boulderSection,
-        SizedBox(height: 10),
-        CheckboxListTile(
-          title: Text("Completed"), //    <-- label
-          value: false,
-          onChanged: (newValue) {},
-        ),
-        SizedBox(height: 10),
-        TextField(
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ],
-          decoration: InputDecoration(
-              border: UnderlineInputBorder(), labelText: "Enter Attempts"),
-          onChanged: (text) {
-            //boulder.name = text;
-            //TODO: Updated processes for attempt record
-          },
-        ),
-        SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            // add your floating action button
-            child: FloatingActionButton(
-              onPressed: () {
-                print("Saving");
-                // ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Record Saved')));
-              },
-              child: Icon(Icons.save),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          boulderSection,
+          SizedBox(height: 10),
+          CheckboxListTile(
+            title: Text("Completed"), //    <-- label
+            value: false,
+            onChanged: (newValue) {},
+          ),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              // add your floating action button
+              child: FloatingActionButton(
+                onPressed: () {
+                  print("Open Dialog");
+                  Utils.showSnackBar("Showing Snacks");
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('Record Saved')));
+                },
+                child: Icon(Icons.edit),
+              ),
             ),
           ),
-        ),
-        SizedBox(height: 10),
-      ],
+          SizedBox(height: 10),
+        ],
+      ),
     );
   }
 
