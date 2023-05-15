@@ -22,8 +22,8 @@ class _BoulderCreateState extends State<BoulderCreate> {
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
-  Boulder boulder =
-      Boulder(name: "Test", active: true, imgRef: "", colour: "", grade: "");
+  Boulder boulder = Boulder.mapped(
+      name: "Test", active: true, imgRef: "", colour: "", grade: "");
 
   bool saveEnabled = false;
 
@@ -198,19 +198,6 @@ class _BoulderCreateState extends State<BoulderCreate> {
               },
             ),
           ),
-          // SizedBox(height: 5),
-          // ElevatedButton(
-          //   child: Text('Time: ${startDate.hour}:${startDate.minute}'),
-          //   onPressed: () async {
-          //     final t = await pickTime(startDate);
-          //     if (t != null) {
-          //       setState(() {
-          //         time = t;
-          //       });
-          //     }
-          //     return;
-          //   },
-          // ),
           SizedBox(height: 10),
           SizedBox(
             width: double.infinity,

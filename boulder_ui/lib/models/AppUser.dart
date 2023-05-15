@@ -1,14 +1,26 @@
 class AppUser {
   String? userId;
+  String? firstName;
+  String? lastName;
   DateTime? regDate;
 
   //default Constructor
-  AppUser({userId, regDate});
+  AppUser();
+
+  //common Constructor
+  AppUser.mapped({userId, regDate});
+
+  factory AppUser.fromMap(Map map) {
+    return AppUser.mapped(
+      userId: map['userId'],
+    );
+  }
 
   toJson() {
-    // return {
-    //   "name": name,
-    //   "colour": colour,
-    // };
+    return {
+      "userId": firstName,
+      "firstName": firstName,
+      "lastName": lastName,
+    };
   }
 }

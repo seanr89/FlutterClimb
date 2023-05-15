@@ -59,8 +59,8 @@ class _BoulderDetailState extends State<BoulderDetail> {
   // async - Supports image URL querying and return of Image object
   Future<Image> loadImageWithURL() async {
     //select the image url
-    String url =
-        await fileStorage.getDownloadURLFromRef(widget.currentBoulder.imgRef);
+    String url = await fileStorage
+        .getDownloadURLFromRef(widget.currentBoulder.imgRef ?? "Unknown");
     return Image.network(
       url,
       width: 400,
@@ -93,10 +93,9 @@ class _BoulderDetailState extends State<BoulderDetail> {
 }
 
 class BoulderSessionForm extends StatelessWidget {
-  static Boulder? sessionBoulder;
-  BoulderSessionForm(Boulder? boulder) {
-    sessionBoulder = boulder;
-  }
+  static Boulder sessionBoulder = Boulder();
+  BoulderSessionForm(Boulder sessionBoulder);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -118,10 +117,8 @@ class BoulderSessionForm extends StatelessWidget {
               // add your floating action button
               child: FloatingActionButton(
                 onPressed: () {
-                  print("Open Dialog");
+                  print("Open Session Dialog");
                   Utils.showSnackBar("Showing Snacks");
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(content: Text('Record Saved')));
                 },
                 child: Icon(Icons.edit),
               ),
@@ -136,24 +133,20 @@ class BoulderSessionForm extends StatelessWidget {
   Widget boulderSection = Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      _buildDetailRow(sessionBoulder?.grade ?? "N/A", Icons.grade, 'Grade: '),
+      _buildDetailRow(sessionBoulder.grade ?? "N/A", Icons.grade, 'Grade: '),
       SizedBox(height: 10),
       _buildDetailRow(
-          sessionBoulder?.colour ?? "N/A", Icons.colorize, 'Colour: '),
+          sessionBoulder.colour ?? "N/A", Icons.colorize, 'Colour: '),
     ],
   );
 }
 
 Row _buildDetailRow(String content, IconData icon, String label) {
-  return Row(
-      mainAxisSize: MainAxisSize.min,
-      // mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon),
-        SizedBox(width: 15.0),
-        Text(label,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        SizedBox(width: 5.0),
-        Text(content, style: TextStyle(fontSize: 18))
-      ]);
+  return Row(mainAxisSize: MainAxisSize.min, children: [
+    Icon(icon),
+    SizedBox(width: 15.0),
+    Text(label, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+    SizedBox(width: 5.0),
+    Text(content, style: TextStyle(fontSize: 18))
+  ]);
 }

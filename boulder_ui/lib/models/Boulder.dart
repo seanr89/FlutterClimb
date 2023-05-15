@@ -8,10 +8,12 @@ class Boulder {
   String? grade;
   DateTime? activeDate;
   DateTime? deactiveDate;
-  String imgRef;
+  String? imgRef;
+
+  Boulder();
 
   //default Constructor
-  Boulder(
+  Boulder.mapped(
       {required this.name,
       required this.active,
       // required this.activeDate,
@@ -22,7 +24,7 @@ class Boulder {
 
   factory Boulder.fromMap(Map map) {
     //print(map);
-    return Boulder(
+    return Boulder.mapped(
         name: map['name'],
         active: map['active'],
         // activeDate: map['activeDate'],
