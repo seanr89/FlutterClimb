@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:namer_app/Screens/dialog/SessionDialog.dart';
 import 'package:namer_app/models/Boulder.dart';
 import 'Services/storage.service.dart';
 import 'assets/utils.dart';
@@ -119,6 +120,7 @@ class BoulderSessionForm extends StatelessWidget {
                 onPressed: () {
                   print("Open Session Dialog");
                   Utils.showSnackBar("Showing Snacks");
+                  showDialog(context: context, builder: (_) => SessionDialog());
                 },
                 child: Icon(Icons.edit),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:namer_app/Repositories/BoulderRepository.dart';
 import 'package:namer_app/Services/storage.service.dart';
 
@@ -14,27 +15,53 @@ class SessionDialog extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         children: [
           SizedBox(
-            height: 350,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Session Dialog'),
-                SizedBox(height: 10.0),
-                FlutterLogo(
-                  size: 125,
-                ),
-                Text(
-                  "This is a Custom Dialog",
-                  style: TextStyle(fontSize: 20),
-                ),
-                //SizedBox(height: 5.0),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
+            height: 400,
+            width: 370,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(height: 5),
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText: "Enter Attempts"),
+                    onChanged: (text) {
+                      //boulder.name = text;
+                      //TODO: Updated processes for attempt record
                     },
-                    child: Text("Close")),
-                SizedBox(height: 10.0),
-              ],
+                  ),
+                  //SizedBox(height: 5),
+                  CheckboxListTile(
+                    title: Text("Completed"), //    <-- label
+                    value: false,
+                    onChanged: (newValue) {},
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("Save")),
+                      SizedBox(width: 20.0),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("Cancel")),
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                ],
+              ),
             ),
           ),
         ]);
