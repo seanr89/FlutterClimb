@@ -1,9 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/boulder_create.dart';
 import 'package:namer_app/boulder_detail.dart';
-
-import 'Services/Firestore.Boulders.dart';
 import 'models/Boulder.dart';
 
 class BoulderList extends StatelessWidget {
@@ -14,7 +13,7 @@ class BoulderList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FutureBuilder<List<Boulder>>(
-            future: FirestoreBoulders.getAllEntries("Boulders"),
+            future: FirestoreCollection.getAllBoulderEntries("Boulders"),
             builder: (context, AsyncSnapshot<List<Boulder>> snapshot) {
               if (!snapshot.hasData) return Text('Loading...');
               return Expanded(

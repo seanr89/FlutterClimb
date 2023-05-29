@@ -1,5 +1,6 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:namer_app/Services/Firestore.Locations.dart';
+import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/models/Location.dart';
 
 class LocationsPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class LocationsPage extends StatelessWidget {
     return Center(
       child: Column(children: [
         FutureBuilder<List<Location>>(
-            future: FirestoreLocations.getAllEntries("Locations"),
+            future: FirestoreCollection.getAllLocationEntries("Locations"),
             builder: (context, AsyncSnapshot<List<Location>> snapshot) {
               if (snapshot.hasData) {
                 return ListView(
