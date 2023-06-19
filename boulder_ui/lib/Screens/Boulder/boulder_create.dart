@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:namer_app/Repositories/BoulderRepository.dart';
 import 'package:namer_app/models/Boulder.dart';
 
-import 'assets/constants.dart';
+import '../../assets/constants.dart';
 
 class BoulderCreate extends StatefulWidget {
   //https://www.mountainproject.com/international-climbing-grades

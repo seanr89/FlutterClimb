@@ -8,10 +8,6 @@ class Storage {
         FirebaseStorage.instanceFor(bucket: "gs://boulderme-8e2a7.appspot.com");
     final storageRef = storage.ref();
     final listResult = await storageRef.listAll();
-    for (var item in listResult.items) {
-      // The items under storageRef.
-      //print(item);
-    }
     return listResult;
   }
 

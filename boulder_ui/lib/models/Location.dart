@@ -1,9 +1,7 @@
 class Location {
-//These are the values that this Demo model can store
   String? name;
   bool active = true;
   String? url;
-  //Map<int, Tier>? tiers;
 
   //default Constructor
   Location({required this.name, required this.active, this.url});

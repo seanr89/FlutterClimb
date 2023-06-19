@@ -1,2 +1,2 @@
 # FlutterClimb
-Flutter based UI client for boulder app
+Flutter based UI client for recording bouldering steps!

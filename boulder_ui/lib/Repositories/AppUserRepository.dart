@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/AppUser.dart';
-import '../models/Boulder.dart';
 
 class AppUserRepository {
   final _db = FirebaseFirestore.instance;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
-import 'package:namer_app/boulder_list.dart';
+import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/Defunct/locationspage.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
