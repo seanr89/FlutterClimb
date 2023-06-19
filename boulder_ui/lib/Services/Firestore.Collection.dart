@@ -4,7 +4,7 @@ import '../models/Boulder.dart';
 import '../models/Location.dart';
 
 class FirestoreCollection {
-  // just a simple get
+  // just a simple get for all genders
   static Future<List<Gender>> getAllGenderEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs
@@ -12,7 +12,7 @@ class FirestoreCollection {
         .toList();
   }
 
-  // just a simple get
+  // just a simple get for all boulders
   static Future<List<Boulder>> getAllBoulderEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs
@@ -20,7 +20,7 @@ class FirestoreCollection {
         .toList();
   }
 
-  // just a simple get
+  // just a simple get for all locations
   static Future<List<Location>> getAllLocationEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs

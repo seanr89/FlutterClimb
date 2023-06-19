@@ -4,6 +4,7 @@ import 'package:namer_app/Services/storage.service.dart';
 
 //https://stackoverflow.com/questions/68930109/flutter-get-image-from-firebase-storage-and-show-it-in-app
 
+// Dialog example to show an image
 class ImageDialog extends StatelessWidget {
   Storage fileStorage = Storage();
   @override

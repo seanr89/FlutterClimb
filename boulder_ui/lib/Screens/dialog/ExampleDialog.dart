@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// First initial test dialog
 class ExampleDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

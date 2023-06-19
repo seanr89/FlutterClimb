@@ -1,5 +1,3 @@
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/Screens/dialog/SessionDialog.dart';
@@ -59,13 +57,12 @@ class _BoulderDetailState extends State<BoulderDetail> {
 
   // async - Supports image URL querying and return of Image object
   Future<Image> loadImageWithURL() async {
-    //select the image url
     String url = await fileStorage
         .getDownloadURLFromRef(widget.currentBoulder.imgRef ?? "Unknown");
     return Image.network(
       url,
       width: 400,
-      height: 480,
+      height: 450,
       frameBuilder: (BuildContext context, Widget child, int? frame,
           bool? wasSynchronouslyLoaded) {
         return Padding(
@@ -94,8 +91,8 @@ class _BoulderDetailState extends State<BoulderDetail> {
 }
 
 class BoulderSessionForm extends StatelessWidget {
-  static Boulder sessionBoulder = Boulder();
-  BoulderSessionForm(Boulder sessionBoulder);
+  final Boulder sessionBoulder;
+  BoulderSessionForm(this.sessionBoulder);
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +100,8 @@ class BoulderSessionForm extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          boulderSection,
+          //boulderSection,
+          createBoulderSection(sessionBoulder),
           SizedBox(height: 10),
           CheckboxListTile(
             title: Text("Completed"), //    <-- label
@@ -132,15 +130,25 @@ class BoulderSessionForm extends StatelessWidget {
     );
   }
 
-  Widget boulderSection = Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      _buildDetailRow(sessionBoulder.grade ?? "N/A", Icons.grade, 'Grade: '),
-      SizedBox(height: 10),
-      _buildDetailRow(
-          sessionBoulder.colour ?? "N/A", Icons.colorize, 'Colour: '),
-    ],
-  );
+  Widget createBoulderSection(Boulder blder) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildDetailRow(blder.grade, Icons.grade, 'Grade: '),
+        SizedBox(height: 10),
+        _buildDetailRow(blder.colour, Icons.colorize, 'Colour: '),
+      ],
+    );
+  }
+
+  // Widget boulderSection = Column(
+  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //   children: [
+  //     _buildDetailRow(sessionBoulder.grade, Icons.grade, 'Grade: '),
+  //     SizedBox(height: 10),
+  //     _buildDetailRow(sessionBoulder.colour, Icons.colorize, 'Colour: '),
+  //   ],
+  // );
 }
 
 Row _buildDetailRow(String content, IconData icon, String label) {

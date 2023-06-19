@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue, brightness: Brightness.dark)),
+                seedColor: Colors.orange, brightness: Brightness.dark)),
         themeMode: ThemeMode.dark,
         scaffoldMessengerKey: Utils.messengerKey,
         home: MyHomePage(),
@@ -72,17 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            IconButton(
-              icon: const Icon(Icons.settings),
-              tooltip: 'Settings',
-              onPressed: () {
-                // SettingsScreen Nav
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MySettings()),
-                );
-              },
-            )
+            // IconButton(
+            //   icon: const Icon(Icons.settings),
+            //   tooltip: 'Settings',
+            //   onPressed: () {
+            //     // SettingsScreen Nav
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => MySettings()),
+            //     );
+            //   },
+            // )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

@@ -27,14 +27,16 @@ class BoulderList extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                         tileColor: Colors.orange,
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.blue,
-                          child: Text((index + 1).toString()),
-                        ),
+                        // leading: CircleAvatar(
+                        //   backgroundColor: Colors.blue,
+                        //   child: Text((index + 1).toString()),
+                        // ),
                         title: Center(child: Text(boulder.name ?? "Boulder")),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        contentPadding: EdgeInsets.all(10.0),
+                        contentPadding: EdgeInsets.all(12.0),
                         onTap: () {
+                          // print(boulder.grade);
+                          // print(boulder.colour);
                           // BoulderDetail() should be name of the screen to nav too
                           Navigator.push(
                             context,

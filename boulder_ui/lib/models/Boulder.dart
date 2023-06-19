@@ -4,8 +4,8 @@ class Boulder {
   // String? id;
   String? name;
   bool active = true;
-  String? colour;
-  String? grade;
+  late String colour;
+  late String grade;
   DateTime? activeDate;
   DateTime? deactiveDate;
   String? imgRef;
