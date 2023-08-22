@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/models/Location.dart';
@@ -29,11 +28,14 @@ class LocationsPage extends StatelessWidget {
         Align(
           alignment: Alignment.bottomRight,
           // add your floating action button
-          child: FloatingActionButton(
-            onPressed: () {
-              print("Create New");
-            },
-            child: Icon(Icons.add),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: FloatingActionButton(
+              onPressed: () {
+                print("Create New");
+              },
+              child: Icon(Icons.add),
+            ),
           ),
         )
       ]),

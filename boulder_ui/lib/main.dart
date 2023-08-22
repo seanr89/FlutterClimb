@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/Defunct/locationspage.dart';
+import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,9 +48,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
-    //BoulderDetail(),
-    //LocationsPage(),
     BoulderList(),
+    SessionList(),
     LocationsPage(),
     MySettings(),
   ];
@@ -72,17 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            // IconButton(
-            //   icon: const Icon(Icons.settings),
-            //   tooltip: 'Settings',
-            //   onPressed: () {
-            //     // SettingsScreen Nav
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => MySettings()),
-            //     );
-            //   },
-            // )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -94,6 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.hiking),
               label: 'Boulders',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarm_sharp),
+              label: 'Sessions',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_city),

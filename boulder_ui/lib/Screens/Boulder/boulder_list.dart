@@ -57,13 +57,38 @@ class BoulderList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print("Create New Clicked!");
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BoulderCreate()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => BoulderCreate()),
+          // );
+          showOverlay(context);
         },
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  showOverlay(BuildContext context) async {
+    OverlayState? overlayState = Overlay.of(context);
+
+    OverlayEntry overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 100,
+        left: 20,
+        child: Material(
+          child: Container(
+            height: 200,
+            width: 200,
+            color: Colors.red,
+          ),
+        ),
+      ),
+    );
+
+    overlayState.insert(overlayEntry);
+
+    await Future.delayed(Duration(seconds: 2));
+
+    overlayEntry.remove();
   }
 }
