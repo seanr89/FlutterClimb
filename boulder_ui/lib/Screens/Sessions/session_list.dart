@@ -10,7 +10,19 @@ class SessionList extends StatelessWidget {
         SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/session/create');
+            final snackBar = SnackBar(
+              content: const Text('Yay! A SnackBar!'),
+              action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  // Some code to undo the change.
+                },
+              ),
+            );
+
+            // Find the ScaffoldMessenger in the widget tree
+            // and use it to show a SnackBar.
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           child: Text("Start a New Session"),
         )
