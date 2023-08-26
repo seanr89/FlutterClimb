@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
-import 'package:namer_app/Screens/Defunct/locationspage.dart';
+import 'package:namer_app/Screens/Locations/locationspage.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     BoulderList(),
     SessionList(),
     LocationsPage(),
-    MySettings(),
+    //MySettings(),
   ];
 
   @override
@@ -61,6 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: const Text('Boulder UI'),
           actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.play_arrow),
+                tooltip: 'Start',
+                onPressed: () {
+                  showOverlay(context);
+                }),
             IconButton(
               icon: const Icon(Icons.login),
               tooltip: 'Sign-in',
@@ -108,5 +114,29 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  showOverlay(BuildContext context) async {
+    OverlayState? overlayState = Overlay.of(context);
+
+    OverlayEntry overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 100,
+        left: 20,
+        child: Material(
+          child: Container(
+            height: 200,
+            width: 200,
+            color: Colors.red,
+          ),
+        ),
+      ),
+    );
+
+    overlayState.insert(overlayEntry);
+
+    await Future.delayed(Duration(seconds: 2));
+
+    overlayEntry.remove();
   }
 }
