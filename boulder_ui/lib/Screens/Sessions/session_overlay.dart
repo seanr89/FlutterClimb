@@ -8,13 +8,8 @@ class SessionOverlayWidget extends StatefulWidget {
 class _SessionOverlayWidget extends State<SessionOverlayWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Stateful Widget'),
-      ),
-      body: Center(
-        child: Text('Hello World!'),
-      ),
+    return Center(
+      child: Text('Session Overlay Widget'),
     );
   }
 }

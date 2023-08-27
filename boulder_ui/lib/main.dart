@@ -3,6 +3,7 @@ import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/Locations/locationspage.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
+import 'package:namer_app/Screens/Sessions/session_overlay.dart';
 import 'package:namer_app/mysettings.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -128,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 200,
             width: 200,
             color: Colors.red,
+            child: SessionOverlayWidget(),
           ),
         ),
       ),
