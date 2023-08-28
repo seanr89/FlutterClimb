@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:namer_app/Services/Firestore.Collection.dart';
-import 'package:namer_app/Screens/Boulder/boulder_create.dart';
 import 'package:namer_app/Screens/Boulder/boulder_detail.dart';
 import '../../models/Boulder.dart';
 

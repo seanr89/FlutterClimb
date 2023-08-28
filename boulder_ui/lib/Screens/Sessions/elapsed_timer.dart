@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ElapsedTime extends StatefulWidget {
-  final String timestamp;
+  final int timestamp;
 
   const ElapsedTime({
     required Key key,
@@ -18,6 +18,7 @@ class _ElapsedTimeState extends State<ElapsedTime> {
   late Timer _timer;
   late DateTime _initialTime;
   late String _currentDuration;
+  bool startedTimer = false;
 
   @override
   void initState() {
@@ -26,16 +27,26 @@ class _ElapsedTimeState extends State<ElapsedTime> {
     _initialTime = _parseTimestamp();
     _currentDuration = _formatDuration(_calcElapsedTime());
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer t) {
       setState(() {
         _currentDuration = _formatDuration(_calcElapsedTime());
       });
     });
   }
 
-  Duration _calcElapsedTime() => _initialTime.difference(DateTime.now());
+  void startTimer(int timeStamp) {
+    startedTimer = true;
+  }
 
-  DateTime _parseTimestamp() => DateTime.parse(widget.timestamp);
+  void endTimer() {
+    startedTimer = false;
+  }
+
+  // Duration _calcElapsedTime() => _initialTime.difference(DateTime.now());
+  Duration _calcElapsedTime() => DateTime.now().difference(_initialTime);
+
+  DateTime _parseTimestamp() =>
+      DateTime.fromMillisecondsSinceEpoch(widget.timestamp);
 
   // TODO update this to fit your own needs
   String _formatDuration(final Duration duration) => duration.toString();
@@ -49,6 +60,20 @@ class _ElapsedTimeState extends State<ElapsedTime> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_currentDuration);
+    if (startedTimer) return Text(_currentDuration);
+
+    //return Text('Start Session');
+    return Center(
+        child: Column(
+      children: [
+        Text("Start Session"),
+        ElevatedButton.icon(
+            onPressed: () {
+              startTimer(DateTime.now().microsecondsSinceEpoch);
+            },
+            icon: Icon(Icons.start),
+            label: Text("Start"))
+      ],
+    ));
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/Locations/locationspage.dart';
+import 'package:namer_app/Screens/Sessions/elapsed_timer.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/Screens/Sessions/session_overlay.dart';
 import 'package:namer_app/mysettings.dart';
@@ -48,6 +50,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _selectedIndex = 0;
+  final timerWidget = ElapsedTime(
+      key: UniqueKey(), timestamp: DateTime.now().millisecondsSinceEpoch);
+
   static List<Widget> _pages = <Widget>[
     BoulderList(),
     SessionList(),
@@ -73,10 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'Sign-in',
               onPressed: () {
                 // SignInScreen Nav
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => SignInScreen()),
+                // );
               },
             ),
           ],
@@ -121,23 +126,21 @@ class _MyHomePageState extends State<MyHomePage> {
     OverlayState? overlayState = Overlay.of(context);
 
     OverlayEntry overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: 100,
-        left: 20,
-        child: Material(
-          child: Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-            child: SessionOverlayWidget(),
-          ),
-        ),
-      ),
-    );
+        builder: (context) => Positioned(
+              top: 100,
+              left: 20,
+              child: Material(
+                child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.red,
+                    child: timerWidget),
+              ),
+            ));
 
     overlayState.insert(overlayEntry);
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 10));
 
     overlayEntry.remove();
   }
