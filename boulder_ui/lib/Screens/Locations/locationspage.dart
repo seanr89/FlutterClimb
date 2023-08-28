@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/Screens/Locations/location_details.dart';
 import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/models/Location.dart';
 
@@ -17,7 +18,14 @@ class LocationsPage extends StatelessWidget {
                   children: snapshot.data!.map((location) {
                     return ListTile(
                         title: Text(location.name ?? "Unknown"),
-                        subtitle: Text(location.url ?? "Unknown"));
+                        subtitle: Text(location.url ?? "Unknown"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LocationDetails(),
+                              ));
+                        });
                   }).toList(),
                 );
               } else {
