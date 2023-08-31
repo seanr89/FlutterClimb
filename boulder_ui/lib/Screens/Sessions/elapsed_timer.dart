@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:namer_app/assets/globals.dart' as globals;
 
 class ElapsedTime extends StatefulWidget {
   final int timestamp;
@@ -18,16 +19,19 @@ class _ElapsedTimeState extends State<ElapsedTime> {
   late Timer _timer;
   late DateTime _initialTime;
   late String _currentDuration;
-  bool startedTimer = false;
+  late bool startedTimer = false;
 
   @override
   void initState() {
+    print('Elapsed Init State');
     super.initState();
+
+    startedTimer = globals.startedTimer;
 
     _initialTime = _parseTimestamp();
     _currentDuration = _formatDuration(_calcElapsedTime());
 
-    _timer = Timer.periodic(const Duration(seconds: 5), (Timer t) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
         _currentDuration = _formatDuration(_calcElapsedTime());
       });
@@ -35,11 +39,17 @@ class _ElapsedTimeState extends State<ElapsedTime> {
   }
 
   void startTimer(int timeStamp) {
-    startedTimer = true;
+    globals.startedTimer = true;
+    setState(() {
+      startedTimer = true;
+    });
   }
 
   void endTimer() {
-    startedTimer = false;
+    globals.startedTimer = false;
+    setState(() {
+      startedTimer = false;
+    });
   }
 
   // Duration _calcElapsedTime() => _initialTime.difference(DateTime.now());
@@ -60,7 +70,20 @@ class _ElapsedTimeState extends State<ElapsedTime> {
 
   @override
   Widget build(BuildContext context) {
-    if (startedTimer) return Text(_currentDuration);
+    if (startedTimer) {
+      return Center(
+          child: Column(
+        children: [
+          Text(_currentDuration),
+          ElevatedButton.icon(
+              onPressed: () {
+                endTimer();
+              },
+              icon: Icon(Icons.stop),
+              label: Text("End"))
+        ],
+      ));
+    }
 
     //return Text('Start Session');
     return Center(
@@ -71,7 +94,7 @@ class _ElapsedTimeState extends State<ElapsedTime> {
             onPressed: () {
               startTimer(DateTime.now().microsecondsSinceEpoch);
             },
-            icon: Icon(Icons.start),
+            icon: Icon(Icons.play_arrow),
             label: Text("Start"))
       ],
     ));

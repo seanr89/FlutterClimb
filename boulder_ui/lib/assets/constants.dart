@@ -16,13 +16,13 @@ class Constants {
   static const List<Map<String, Object?>> availableColors = [
     {'Orange': Colors.orange},
     {'Blue': Colors.blue},
-    {'White': Colors.blue},
-    {'Green': Colors.blue},
-    {'Yellow': Colors.blue},
-    {'Purple': Colors.blue},
-    {'Red': Colors.blue},
-    {'Black': Colors.blue},
-    {'Pink': Colors.blue}
+    {'White': Colors.white},
+    {'Green': Colors.green},
+    {'Yellow': Colors.yellow},
+    {'Purple': Colors.purple},
+    {'Red': Colors.red},
+    {'Black': Colors.black},
+    {'Pink': Colors.pink}
   ];
 
   static const List<String> grades = <String>[
