@@ -1,4 +1,5 @@
 class Validator {
+  /// Validates the name
   static String? validateName({required String? name}) {
     if (name == null) {
       return null;
@@ -10,6 +11,7 @@ class Validator {
     return null;
   }
 
+  /// Validates the email
   static String? validateEmail({required String? email}) {
     if (email == null) {
       return null;
@@ -27,6 +29,7 @@ class Validator {
     return null;
   }
 
+  /// Validates the password
   static String? validatePassword({required String? password}) {
     if (password == null) {
       return null;

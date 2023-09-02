@@ -12,4 +12,22 @@ class AppUserRepository {
         .map((item) => AppUser.fromMap(item.data()))
         .toList();
   }
+
+  Future<AppUser> getAppUserById(String id) async {
+    var snapShot = await _db.collection("AppUsers").doc(id).get();
+    return AppUser.fromMap(snapShot.data() ?? {});
+  }
+
+  Future<bool> createUser(AppUser appUser) async {
+    bool result = false;
+    await _db
+        .collection("AppUsers")
+        .add(appUser.toJson())
+        .whenComplete(() => {print("createAppUser done"), result = true})
+        .catchError((err) {
+      print(err.toString());
+    });
+
+    return result;
+  }
 }

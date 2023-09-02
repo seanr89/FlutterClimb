@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Repositories/BoulderRepository.dart';
-import 'package:namer_app/Services/storage.service.dart';
+import 'package:namer_app/Services/Storage.service.dart';
 
 //https://stackoverflow.com/questions/68930109/flutter-get-image-from-firebase-storage-and-show-it-in-app
 

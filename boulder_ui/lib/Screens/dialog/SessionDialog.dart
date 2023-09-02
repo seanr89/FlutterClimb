@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/Repositories/BoulderRepository.dart';
-import 'package:namer_app/Services/storage.service.dart';
+import 'package:namer_app/Services/Storage.service.dart';
 
 class SessionDialog extends StatelessWidget {
   Storage fileStorage = Storage();

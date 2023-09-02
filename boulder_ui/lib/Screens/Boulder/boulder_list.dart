@@ -34,9 +34,6 @@ class BoulderList extends StatelessWidget {
                         trailing: Icon(Icons.keyboard_arrow_right),
                         contentPadding: EdgeInsets.all(12.0),
                         onTap: () {
-                          // print(boulder.grade);
-                          // print(boulder.colour);
-                          // BoulderDetail() should be name of the screen to nav too
                           Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:namer_app/Screens/dialog/SessionDialog.dart';
 import 'package:namer_app/models/Boulder.dart';
-import '../../Services/storage.service.dart';
+import '../../Services/Storage.service.dart';
 import '../../assets/utils.dart';
 
 class BoulderDetail extends StatefulWidget {

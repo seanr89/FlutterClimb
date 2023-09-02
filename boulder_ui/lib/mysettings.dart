@@ -1,6 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:namer_app/Services/storage.service.dart';
+import 'package:namer_app/Services/Storage.service.dart';
 // import 'Screens/dialog/ImageDialog.dart';
 
 class MySettings extends StatelessWidget {
