@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Screens/Locations/location_details.dart';
 import 'package:namer_app/Services/Firestore.Collection.dart';
+import 'package:namer_app/assets/utils.dart';
 import 'package:namer_app/models/Location.dart';
 
 class LocationsPage extends StatelessWidget {
@@ -41,6 +42,7 @@ class LocationsPage extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: () {
                 print("Create New");
+                Utils.showSnackBar("Create New");
               },
               child: Icon(Icons.add),
             ),

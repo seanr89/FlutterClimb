@@ -25,7 +25,7 @@ class FirestoreCollection {
   static Future<List<Location>> getAllLocationEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs
-        .map((item) => Location.fromMap(item.data()))
+        .map((item) => Location.fromMap(item.data(), item.id))
         .toList();
   }
 

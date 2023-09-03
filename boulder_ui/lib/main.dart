@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
+import 'package:namer_app/Screens/HomePage.dart';
 import 'package:namer_app/Screens/Locations/locationspage.dart';
 import 'package:namer_app/Screens/Sessions/elapsed_timer.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
                 seedColor: Colors.orange, brightness: Brightness.dark)),
         themeMode: ThemeMode.dark,
         scaffoldMessengerKey: Utils.messengerKey,
-        home: MyHomePage(),
+        // home: MyHomePage(),
+        home: HomePage(),
       ),
     );
   }
@@ -73,17 +75,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   showOverlay(context);
                 }),
-            IconButton(
-              icon: const Icon(Icons.login),
-              tooltip: 'Sign-in',
-              onPressed: () {
-                // SignInScreen Nav
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SignInScreen()),
-                // );
-              },
-            ),
+            // IconButton(
+            //   icon: const Icon(Icons.login),
+            //   tooltip: 'Sign-in',
+            //   onPressed: () {
+            //     // SignInScreen Nav
+            //     // Navigator.push(
+            //     //   context,
+            //     //   MaterialPageRoute(builder: (context) => SignInScreen()),
+            //     // );
+            //   },
+            // ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -122,6 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  /**
+   * Overlay for session visibility
+   */
   showOverlay(BuildContext context) async {
     OverlayState? overlayState = Overlay.of(context);
 
