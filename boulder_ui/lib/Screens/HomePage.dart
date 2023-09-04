@@ -1,41 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/Repositories/AppUserRepository.dart';
+import 'package:namer_app/assets/utils.dart';
 
 import '../Services/Firestore.Collection.dart';
+import '../models/AppUser.dart';
 import '../models/Location.dart';
 import 'Locations/location_details.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final appUserRepo = AppUserRepository();
+
+  final List<AppUser> users = [];
+  late bool enabledUsers = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Boulder App")),
       body: Center(
-        child: Column(
-          children: [
-            Text("Data Entry!"),
-            SizedBox(height: 20),
-            FutureBuilder<List<Location>>(
-                future: FirestoreCollection.getAllLocationEntries("Locations"),
-                builder: (context, AsyncSnapshot<List<Location>> snapshot) {
-                  if (snapshot.hasData) {
-                    return DropdownButton(
-                        // Initial Value
-                        value: "Select a Location",
-                        items: snapshot.data!.map((location) {
-                          return DropdownMenuItem(
-                            child: Text(location.name ?? "Unknown"),
-                            value: location.id,
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {});
-                  } else {
-                    return CircularProgressIndicator();
-                  }
-                }),
-            SizedBox(height: 20),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //Text("Data Entry!"),
+              SizedBox(height: 20),
+              FutureBuilder<List<Location>>(
+                  future:
+                      FirestoreCollection.getAllLocationEntries("Locations"),
+                  builder: (context, AsyncSnapshot<List<Location>> snapshot) {
+                    if (snapshot.hasData) {
+                      return DropdownButton(
+                          hint: Text("Select Location"),
+                          items: snapshot.data!.map((location) {
+                            return DropdownMenuItem(
+                              child: Text(location.name ?? "Unknown"),
+                              value: location.id,
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            Utils.showSnackBar(newValue ?? "Unknown");
+                            loadAppUserData(newValue ?? "Unknown");
+                          });
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  }),
+              SizedBox(height: 20),
+              DropdownButton(
+                  hint: Text("Select User"),
+                  items: users.map((e) {
+                    return DropdownMenuItem(
+                      child: Text(e.firstName ?? "Unknown"),
+                      value: e.firstName,
+                    );
+                  }).toList(),
+                  onChanged: enabledUsers
+                      ? (String? newValue) {
+                          Utils.showSnackBar(newValue ?? "Unknown");
+                        }
+                      : null),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> loadAppUserData(String locationId) async {
+    await appUserRepo.getLocationAppUsers(locationId).then((value) {
+      setState(() {
+        //print('foundUsers');
+        users.clear();
+        users.addAll(value);
+        enabledUsers = true;
+      });
+    });
   }
 }
