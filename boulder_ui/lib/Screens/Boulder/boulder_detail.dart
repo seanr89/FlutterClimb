@@ -22,33 +22,37 @@ class _BoulderDetailState extends State<BoulderDetail> {
     return Material(
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FutureBuilder<Image>(
-                  future: loadImageWithURL(),
-                  builder: (BuildContext context, AsyncSnapshot<Image> image) {
-                    if (image.hasData) {
-                      return InteractiveViewer(
-                          panEnabled: true,
-                          scaleEnabled: true,
-                          //constrained: false,
-                          //boundaryMargin: EdgeInsets.all(10),
-                          minScale: 1,
-                          maxScale: 2.7,
-                          child: image.data as Image);
-                    } else {
-                      return CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white)); // placeholder
-                    }
-                  },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder<Image>(
+                    future: loadImageWithURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<Image> image) {
+                      if (image.hasData) {
+                        return InteractiveViewer(
+                            panEnabled: true,
+                            scaleEnabled: true,
+                            //constrained: false,
+                            //boundaryMargin: EdgeInsets.all(10),
+                            minScale: 1,
+                            maxScale: 2.7,
+                            child: image.data as Image);
+                      } else {
+                        return CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white)); // placeholder
+                      }
+                    },
+                  ),
                 ),
-              ),
-              BoulderSessionForm(widget.currentBoulder)
-            ],
+                BoulderSessionForm(widget.currentBoulder)
+              ],
+            ),
           ),
         ),
       ),

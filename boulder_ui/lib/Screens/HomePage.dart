@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Repositories/AppUserRepository.dart';
+import 'package:namer_app/Screens/User/user_create.dart';
 import 'package:namer_app/assets/utils.dart';
 
 import '../Services/Firestore.Collection.dart';
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final appUserRepo = AppUserRepository();
 
   final List<AppUser> users = [];
+  final List<Location> locations = [];
   late bool enabledUsers = false;
 
   @override
@@ -26,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //Text("Data Entry!"),
@@ -36,6 +38,8 @@ class _HomePageState extends State<HomePage> {
                       FirestoreCollection.getAllLocationEntries("Locations"),
                   builder: (context, AsyncSnapshot<List<Location>> snapshot) {
                     if (snapshot.hasData) {
+                      locations.clear();
+                      locations.addAll(snapshot.data!);
                       return DropdownButton(
                           hint: Text("Select Location"),
                           items: snapshot.data!.map((location) {
@@ -45,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
-                            Utils.showSnackBar(newValue ?? "Unknown");
+                            //Utils.showSnackBar(newValue ?? "Unknown");
                             loadAppUserData(newValue ?? "Unknown");
                           });
                     } else {
@@ -66,6 +70,27 @@ class _HomePageState extends State<HomePage> {
                           Utils.showSnackBar(newValue ?? "Unknown");
                         }
                       : null),
+              SizedBox(height: 20),
+              Align(
+                alignment: Alignment.bottomRight,
+                // add your floating action button
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      //print("Add User");
+                      Utils.showSnackBar("Create New");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                UserCreate(locations: locations)),
+                      );
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              )
             ],
           ),
         ),
