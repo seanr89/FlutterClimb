@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/assets/utils.dart';
 
+import '../../Repositories/AppUserRepository.dart';
+import '../../models/AppUser.dart';
 import '../../models/Location.dart';
 
 class UserCreate extends StatefulWidget {
   final List<Location> locations;
+  String? dropdownValue;
 
   UserCreate({super.key, required this.locations});
   @override
@@ -12,6 +16,8 @@ class UserCreate extends StatefulWidget {
 
 class _UserCreateState extends State<UserCreate> {
   List<Location> locations;
+  final appUserRepo = AppUserRepository();
+  final appUser = AppUser();
   _UserCreateState(this.locations);
   @override
   Widget build(BuildContext context) {
@@ -23,20 +29,21 @@ class _UserCreateState extends State<UserCreate> {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back),
-            //replace with our own icon data.
           )),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
             child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 35),
+            // User name entry
             TextField(
               decoration: InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: "Enter a firstname"),
               onChanged: (text) {
-                //boulder.name = text;
+                appUser.firstName = text;
               },
             ),
             SizedBox(height: 15),
@@ -45,7 +52,7 @@ class _UserCreateState extends State<UserCreate> {
                   border: UnderlineInputBorder(),
                   labelText: "Enter a lastname"),
               onChanged: (text) {
-                //boulder.name = text;
+                appUser.lastName = text;
               },
             ),
             SizedBox(height: 15),
@@ -53,7 +60,7 @@ class _UserCreateState extends State<UserCreate> {
               decoration: InputDecoration(
                   border: UnderlineInputBorder(), labelText: "Enter an email"),
               onChanged: (text) {
-                //boulder.name = text;
+                appUser.email = text;
               },
             ),
             SizedBox(height: 15),
@@ -61,14 +68,22 @@ class _UserCreateState extends State<UserCreate> {
                 hint: Text("Select Location"),
                 items: locations.map((location) {
                   return DropdownMenuItem(
-                    child: Text(location.name ?? "Unknown"),
                     value: location.id,
+                    child: Text(location.name ?? "Unknown"),
                   );
                 }).toList(),
-                onChanged: (String? newValue) {}),
-            SizedBox(height: 5),
+                onChanged: (String? newValue) {
+                  appUser.locationId = newValue;
+                  print(newValue);
+                }),
+            SizedBox(height: 15),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                bool res = await appUserRepo.createUser(appUser);
+                if (res) Navigator.pop(context);
+
+                Utils.showSnackBar("User Failed");
+              },
               child: Text("Save"),
             )
           ],

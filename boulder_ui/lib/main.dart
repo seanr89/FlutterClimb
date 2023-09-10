@@ -124,9 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  /**
-   * Overlay for session visibility
-   */
+  /// Overlay for session visibility
   showOverlay(BuildContext context) async {
     OverlayState? overlayState = Overlay.of(context);
 

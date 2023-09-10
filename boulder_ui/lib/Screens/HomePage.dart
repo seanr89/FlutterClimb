@@ -6,7 +6,6 @@ import 'package:namer_app/assets/utils.dart';
 import '../Services/Firestore.Collection.dart';
 import '../models/AppUser.dart';
 import '../models/Location.dart';
-import 'Locations/location_details.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,6 +18,8 @@ class _HomePageState extends State<HomePage> {
   final List<AppUser> users = [];
   final List<Location> locations = [];
   late bool enabledUsers = false;
+  String? locationDropDownValue;
+  String? userDropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +32,8 @@ class _HomePageState extends State<HomePage> {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              //Text("Data Entry!"),
               SizedBox(height: 20),
+              // Repo query and dropdownf or locations
               FutureBuilder<List<Location>>(
                   future:
                       FirestoreCollection.getAllLocationEntries("Locations"),
@@ -42,32 +43,44 @@ class _HomePageState extends State<HomePage> {
                       locations.addAll(snapshot.data!);
                       return DropdownButton(
                           hint: Text("Select Location"),
+                          value: locationDropDownValue,
                           items: snapshot.data!.map((location) {
                             return DropdownMenuItem(
-                              child: Text(location.name ?? "Unknown"),
                               value: location.id,
+                              child: Text(location.name ?? "Unknown"),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
-                            //Utils.showSnackBar(newValue ?? "Unknown");
-                            loadAppUserData(newValue ?? "Unknown");
+                            var location = locations.firstWhere(
+                                (element) => element.id == newValue);
+                            setState(() {
+                              locationDropDownValue = location.id;
+                            });
+                            //print(dropdownValue);
+                            loadAppUserData(location.id ?? "Unknown");
                           });
                     } else {
                       return CircularProgressIndicator();
                     }
                   }),
               SizedBox(height: 20),
+              // User Dropdown
               DropdownButton(
+                  disabledHint: Text("Select Location First"),
+                  value: userDropdownValue,
                   hint: Text("Select User"),
                   items: users.map((e) {
                     return DropdownMenuItem(
-                      child: Text(e.firstName ?? "Unknown"),
                       value: e.firstName,
+                      child: Text(e.firstName ?? "Unknown"),
                     );
                   }).toList(),
                   onChanged: enabledUsers
                       ? (String? newValue) {
                           Utils.showSnackBar(newValue ?? "Unknown");
+                          setState(() {
+                            userDropdownValue = newValue;
+                          });
                         }
                       : null),
               SizedBox(height: 20),
@@ -78,8 +91,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(12.0),
                   child: FloatingActionButton(
                     onPressed: () {
-                      //print("Add User");
-                      Utils.showSnackBar("Create New");
+                      //Utils.showSnackBar("Create New");
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -101,7 +113,6 @@ class _HomePageState extends State<HomePage> {
   Future<void> loadAppUserData(String locationId) async {
     await appUserRepo.getLocationAppUsers(locationId).then((value) {
       setState(() {
-        //print('foundUsers');
         users.clear();
         users.addAll(value);
         enabledUsers = true;
