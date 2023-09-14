@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                       : null),
               SizedBox(height: 20),
               Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.bottomLeft,
                 // add your floating action button
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -98,6 +98,19 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) =>
                                 UserCreate(locations: locations)),
                       );
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                // add your floating action button
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      Utils.showSnackBar("Create New", color: Colors.green);
                     },
                     child: Icon(Icons.add),
                   ),

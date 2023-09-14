@@ -18,6 +18,8 @@ class _UserCreateState extends State<UserCreate> {
   List<Location> locations;
   final appUserRepo = AppUserRepository();
   final appUser = AppUser();
+  final locationDropDownValue = "";
+
   _UserCreateState(this.locations);
   @override
   Widget build(BuildContext context) {
@@ -63,9 +65,11 @@ class _UserCreateState extends State<UserCreate> {
                 appUser.email = text;
               },
             ),
+            // Location drop down
             SizedBox(height: 15),
             DropdownButton(
                 hint: Text("Select Location"),
+                value: locationDropDownValue,
                 items: locations.map((location) {
                   return DropdownMenuItem(
                     value: location.id,
@@ -80,8 +84,11 @@ class _UserCreateState extends State<UserCreate> {
             ElevatedButton(
               onPressed: () async {
                 bool res = await appUserRepo.createUser(appUser);
-                if (res) Navigator.pop(context);
-
+                if (res) {
+                  Navigator.pop(context);
+                  return;
+                }
+                // No good we get a snack bar!
                 Utils.showSnackBar("User Failed");
               },
               child: Text("Save"),
