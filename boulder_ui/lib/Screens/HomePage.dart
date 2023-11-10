@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                   onChanged: enabledUsers
                       ? (String? newValue) {
-                          Utils.showSnackBar(newValue ?? "Unknown");
+                          //Utils.showSnackBar(newValue ?? "Unknown");
                           setState(() {
                             userDropdownValue = newValue;
                           });
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(12.0),
                   child: FloatingActionButton(
                     onPressed: () {
-                      //Utils.showSnackBar("Create New");
+                      //Utils.showSnackBar("Create New Climber");
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
                                 UserCreate(locations: locations)),
                       );
                     },
+                    tooltip: "Create New Climber",
                     child: Icon(Icons.add),
                   ),
                 ),
@@ -110,9 +111,10 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(12.0),
                   child: FloatingActionButton(
                     onPressed: () {
-                      Utils.showSnackBar("Create New", color: Colors.green);
+                      Utils.showSnackBar("Start Session", color: Colors.green);
                     },
-                    child: Icon(Icons.add),
+                    tooltip: "Start Session",
+                    child: Icon(Icons.play_arrow),
                   ),
                 ),
               )

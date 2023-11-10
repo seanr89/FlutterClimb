@@ -18,7 +18,7 @@ class _UserCreateState extends State<UserCreate> {
   List<Location> locations;
   final appUserRepo = AppUserRepository();
   final appUser = AppUser();
-  final locationDropDownValue = "";
+  String? locationDropDownValue;
 
   _UserCreateState(this.locations);
   @override
@@ -69,7 +69,7 @@ class _UserCreateState extends State<UserCreate> {
             SizedBox(height: 15),
             DropdownButton(
                 hint: Text("Select Location"),
-                value: locationDropDownValue,
+                //value: locationDropDownValue,
                 items: locations.map((location) {
                   return DropdownMenuItem(
                     value: location.id,
