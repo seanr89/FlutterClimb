@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namer_app/Repositories/AppUserRepository.dart';
+import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/User/user_create.dart';
 import 'package:namer_app/assets/utils.dart';
 
@@ -111,7 +112,12 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(12.0),
                   child: FloatingActionButton(
                     onPressed: () {
-                      Utils.showSnackBar("Start Session", color: Colors.green);
+                      //Utils.showSnackBar("Start Session", color: Colors.green);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BoulderList(),
+                          ));
                     },
                     tooltip: "Start Session",
                     child: Icon(Icons.play_arrow),
