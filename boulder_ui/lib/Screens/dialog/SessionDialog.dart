@@ -30,15 +30,14 @@ class SessionDialog extends StatelessWidget {
                     ],
                     decoration: InputDecoration(
                         border: UnderlineInputBorder(),
-                        labelText: "Enter Attempts"),
+                        labelText: "Enter Attempt Count"),
                     onChanged: (text) {
                       //boulder.name = text;
                       //TODO: Updated processes for attempt record
                     },
                   ),
-                  //SizedBox(height: 5),
                   CheckboxListTile(
-                    title: Text("Completed"), //    <-- label
+                    title: Text("Completed"),
                     value: false,
                     onChanged: (newValue) {},
                   ),

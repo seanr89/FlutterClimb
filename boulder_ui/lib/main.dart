@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:namer_app/Screens/Auth/signinscreen.dart';
 import 'package:namer_app/Screens/Boulder/boulder_list.dart';
 import 'package:namer_app/Screens/HomePage.dart';
-import 'package:namer_app/Screens/Locations/locationspage.dart';
+import 'package:namer_app/Screens/Locations/location_list.dart';
 import 'package:namer_app/Screens/Sessions/elapsed_timer.dart';
 import 'package:namer_app/Screens/Sessions/session_list.dart';
 import 'package:namer_app/Screens/Sessions/session_overlay.dart';
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _pages = <Widget>[
     BoulderList(),
     SessionList(),
-    LocationsPage(),
+    LocationList(),
     //MySettings(),
   ];
 

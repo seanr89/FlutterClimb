@@ -37,6 +37,7 @@ class FirestoreCollection {
         .toList();
   }
 
+  // just a simple get for all climbs
   static Future<List<Climb>> getAllClimbEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs

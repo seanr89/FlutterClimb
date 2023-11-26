@@ -11,9 +11,9 @@ class Storage {
     return listResult;
   }
 
-  /**
-   * Grab a file from Firebase Storage by path
-   */
+  //////////////////////////////////////////////////////////////////////
+
+  /// Grab a file from Firebase Storage by path
   Future<Image> getFileFromPath(String imgRef) async {
     // Create a reference to a file from a Google Cloud Storage URI
     final storage =
@@ -26,6 +26,8 @@ class Storage {
 
     return img;
   }
+
+  //////////////////////////////////////////////////////////////////////
 
   Future<String> getDownloadURLFromRef(String imgRef) async {
     // Create a reference to a file from a Google Cloud Storage URI

@@ -4,7 +4,7 @@ import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/assets/utils.dart';
 import 'package:namer_app/models/Location.dart';
 
-class LocationsPage extends StatelessWidget {
+class LocationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(

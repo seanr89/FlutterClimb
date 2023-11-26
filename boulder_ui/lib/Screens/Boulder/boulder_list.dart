@@ -4,6 +4,14 @@ import 'package:namer_app/Services/Firestore.Collection.dart';
 import 'package:namer_app/Screens/Boulder/boulder_detail.dart';
 import '../../models/Boulder.dart';
 
+/**
+ * BoulderList - Boulder listing page
+ * Steps:
+ * 1. Initialize the BoulderList class
+ * 2. Build the Scaffold
+ * 3. Query the boulder data from Firestore
+ * 4. visualize the data in a ListView
+ */
 class BoulderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,10 +45,6 @@ class BoulderList extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                         tileColor: Colors.orange,
-                        // leading: CircleAvatar(
-                        //   backgroundColor: Colors.blue,
-                        //   child: Text((index + 1).toString()),
-                        // ),
                         title: Center(child: Text(boulder.name ?? "Boulder")),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         contentPadding: EdgeInsets.all(12.0),

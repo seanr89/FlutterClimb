@@ -37,8 +37,6 @@ class _BoulderDetailState extends State<BoulderDetail> {
                         return InteractiveViewer(
                             panEnabled: true,
                             scaleEnabled: true,
-                            //constrained: false,
-                            //boundaryMargin: EdgeInsets.all(10),
                             minScale: 1,
                             maxScale: 2.7,
                             child: image.data as Image);
