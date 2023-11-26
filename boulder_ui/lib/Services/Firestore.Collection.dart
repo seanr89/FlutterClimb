@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:namer_app/models/AppUser.dart';
+import 'package:namer_app/models/Climb.dart';
 import 'package:namer_app/models/Gender.dart';
 import '../models/Boulder.dart';
 import '../models/Location.dart';
@@ -33,6 +34,13 @@ class FirestoreCollection {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs
         .map((item) => AppUser.fromMap(item.data()))
+        .toList();
+  }
+
+  static Future<List<Climb>> getAllClimbEntries(String collection) async {
+    return (await FirebaseFirestore.instance.collection(collection).get())
+        .docs
+        .map((item) => Climb.fromMap(item.data()))
         .toList();
   }
 }

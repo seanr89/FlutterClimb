@@ -22,17 +22,17 @@ class Climb {
       required this.colour,
       required this.grade});
 
-  // factory Boulder.fromMap(Map map) {
-  //   //print(map);
-  //   return Boulder.mapped(
-  //       name: map['name'],
-  //       active: map['active'],
-  //       // activeDate: map['activeDate'],
-  //       // deactiveDate: map['deactiveDate'],
-  //       imgRef: map['imgRef'],
-  //       colour: map['colour'],
-  //       grade: map['grade']);
-  // }
+  factory Climb.fromMap(Map map) {
+    //print(map);
+    return Climb.mapped(
+        name: map['name'],
+        active: map['active'],
+        // activeDate: map['activeDate'],
+        // deactiveDate: map['deactiveDate'],
+        imgRef: map['imgRef'],
+        colour: map['colour'],
+        grade: map['grade']);
+  }
 
   toJson() {
     return {

@@ -8,7 +8,17 @@ class BoulderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Boulder List")),
+      appBar: AppBar(
+        title: Text("Boulder List"),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.plus_one),
+              tooltip: 'Add',
+              onPressed: () {
+                //showOverlay(context);
+              })
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
